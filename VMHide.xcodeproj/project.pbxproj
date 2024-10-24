@@ -1,0 +1,473 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FB4A5A712CBF19B100D5B696 /* kern_start.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB4A5A702CBF19B100D5B696 /* kern_start.hpp */; };
+		FB67AB172CBC62A0007CA6A9 /* libkmod.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB898C992CBC628A00927629 /* libkmod.a */; };
+		FB67AB342CBC633E007CA6A9 /* kern_disasm.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB1D2CBC633D007CA6A9 /* kern_disasm.hpp */; };
+		FB67AB352CBC633E007CA6A9 /* kern_efi.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB1E2CBC633D007CA6A9 /* kern_efi.hpp */; };
+		FB67AB362CBC633E007CA6A9 /* kern_config.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB1F2CBC633D007CA6A9 /* kern_config.hpp */; };
+		FB67AB372CBC633E007CA6A9 /* kern_nvram.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB202CBC633D007CA6A9 /* kern_nvram.hpp */; };
+		FB67AB382CBC633E007CA6A9 /* plugin_start.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB212CBC633D007CA6A9 /* plugin_start.hpp */; };
+		FB67AB392CBC633E007CA6A9 /* hde32.h in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB222CBC633D007CA6A9 /* hde32.h */; };
+		FB67AB3A2CBC633E007CA6A9 /* kern_compat.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB232CBC633D007CA6A9 /* kern_compat.hpp */; };
+		FB67AB3B2CBC633E007CA6A9 /* kern_api.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB242CBC633D007CA6A9 /* kern_api.hpp */; };
+		FB67AB3C2CBC633E007CA6A9 /* kern_patcher.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB252CBC633D007CA6A9 /* kern_patcher.hpp */; };
+		FB67AB3D2CBC633E007CA6A9 /* kern_time.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB262CBC633D007CA6A9 /* kern_time.hpp */; };
+		FB67AB3E2CBC633E007CA6A9 /* kern_util.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB272CBC633D007CA6A9 /* kern_util.hpp */; };
+		FB67AB3F2CBC633E007CA6A9 /* hde64.h in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB282CBC633D007CA6A9 /* hde64.h */; };
+		FB67AB402CBC633E007CA6A9 /* kern_crypto.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB292CBC633D007CA6A9 /* kern_crypto.hpp */; };
+		FB67AB412CBC633E007CA6A9 /* kern_mach.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB2A2CBC633D007CA6A9 /* kern_mach.hpp */; };
+		FB67AB422CBC633E007CA6A9 /* kern_compression.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB2B2CBC633D007CA6A9 /* kern_compression.hpp */; };
+		FB67AB432CBC633E007CA6A9 /* kern_cpu.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB2C2CBC633D007CA6A9 /* kern_cpu.hpp */; };
+		FB67AB442CBC633E007CA6A9 /* kern_devinfo.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB2D2CBC633D007CA6A9 /* kern_devinfo.hpp */; };
+		FB67AB452CBC633E007CA6A9 /* kern_iokit.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB2E2CBC633D007CA6A9 /* kern_iokit.hpp */; };
+		FB67AB462CBC633E007CA6A9 /* kern_rtc.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB2F2CBC633E007CA6A9 /* kern_rtc.hpp */; };
+		FB67AB472CBC633E007CA6A9 /* kern_user.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB302CBC633E007CA6A9 /* kern_user.hpp */; };
+		FB67AB482CBC633E007CA6A9 /* kern_policy.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB312CBC633E007CA6A9 /* kern_policy.hpp */; };
+		FB67AB492CBC633E007CA6A9 /* kern_version.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB322CBC633E007CA6A9 /* kern_version.hpp */; };
+		FB67AB4A2CBC633E007CA6A9 /* kern_file.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB332CBC633E007CA6A9 /* kern_file.hpp */; };
+		FB67AB502CBC6403007CA6A9 /* plugin_start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB67AB192CBC6317007CA6A9 /* plugin_start.cpp */; };
+		FB898C8E2CBBE85700927629 /* kern_start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB898C8D2CBBE85700927629 /* kern_start.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FB4A5A702CBF19B100D5B696 /* kern_start.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_start.hpp; sourceTree = "<group>"; };
+		FB67AB192CBC6317007CA6A9 /* plugin_start.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = plugin_start.cpp; path = Lilu.kext/Contents/Resources/Library/plugin_start.cpp; sourceTree = "<group>"; };
+		FB67AB1D2CBC633D007CA6A9 /* kern_disasm.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = kern_disasm.hpp; path = Lilu.kext/Contents/Resources/Headers/kern_disasm.hpp; sourceTree = "<group>"; };
+		FB67AB1E2CBC633D007CA6A9 /* kern_efi.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = kern_efi.hpp; path = Lilu.kext/Contents/Resources/Headers/kern_efi.hpp; sourceTree = "<group>"; };
+		FB67AB1F2CBC633D007CA6A9 /* kern_config.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = kern_config.hpp; path = Lilu.kext/Contents/Resources/Headers/kern_config.hpp; sourceTree = "<group>"; };
+		FB67AB202CBC633D007CA6A9 /* kern_nvram.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = kern_nvram.hpp; path = Lilu.kext/Contents/Resources/Headers/kern_nvram.hpp; sourceTree = "<group>"; };
+		FB67AB212CBC633D007CA6A9 /* plugin_start.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = plugin_start.hpp; path = Lilu.kext/Contents/Resources/Headers/plugin_start.hpp; sourceTree = "<group>"; };
+		FB67AB222CBC633D007CA6A9 /* hde32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = hde32.h; path = Lilu.kext/Contents/Resources/Headers/hde32.h; sourceTree = "<group>"; };
+		FB67AB232CBC633D007CA6A9 /* kern_compat.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = kern_compat.hpp; path = Lilu.kext/Contents/Resources/Headers/kern_compat.hpp; sourceTree = "<group>"; };
+		FB67AB242CBC633D007CA6A9 /* kern_api.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = kern_api.hpp; path = Lilu.kext/Contents/Resources/Headers/kern_api.hpp; sourceTree = "<group>"; };
+		FB67AB252CBC633D007CA6A9 /* kern_patcher.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = kern_patcher.hpp; path = Lilu.kext/Contents/Resources/Headers/kern_patcher.hpp; sourceTree = "<group>"; };
+		FB67AB262CBC633D007CA6A9 /* kern_time.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = kern_time.hpp; path = Lilu.kext/Contents/Resources/Headers/kern_time.hpp; sourceTree = "<group>"; };
+		FB67AB272CBC633D007CA6A9 /* kern_util.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = kern_util.hpp; path = Lilu.kext/Contents/Resources/Headers/kern_util.hpp; sourceTree = "<group>"; };
+		FB67AB282CBC633D007CA6A9 /* hde64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = hde64.h; path = Lilu.kext/Contents/Resources/Headers/hde64.h; sourceTree = "<group>"; };
+		FB67AB292CBC633D007CA6A9 /* kern_crypto.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = kern_crypto.hpp; path = Lilu.kext/Contents/Resources/Headers/kern_crypto.hpp; sourceTree = "<group>"; };
+		FB67AB2A2CBC633D007CA6A9 /* kern_mach.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = kern_mach.hpp; path = Lilu.kext/Contents/Resources/Headers/kern_mach.hpp; sourceTree = "<group>"; };
+		FB67AB2B2CBC633D007CA6A9 /* kern_compression.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = kern_compression.hpp; path = Lilu.kext/Contents/Resources/Headers/kern_compression.hpp; sourceTree = "<group>"; };
+		FB67AB2C2CBC633D007CA6A9 /* kern_cpu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = kern_cpu.hpp; path = Lilu.kext/Contents/Resources/Headers/kern_cpu.hpp; sourceTree = "<group>"; };
+		FB67AB2D2CBC633D007CA6A9 /* kern_devinfo.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = kern_devinfo.hpp; path = Lilu.kext/Contents/Resources/Headers/kern_devinfo.hpp; sourceTree = "<group>"; };
+		FB67AB2E2CBC633D007CA6A9 /* kern_iokit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = kern_iokit.hpp; path = Lilu.kext/Contents/Resources/Headers/kern_iokit.hpp; sourceTree = "<group>"; };
+		FB67AB2F2CBC633E007CA6A9 /* kern_rtc.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = kern_rtc.hpp; path = Lilu.kext/Contents/Resources/Headers/kern_rtc.hpp; sourceTree = "<group>"; };
+		FB67AB302CBC633E007CA6A9 /* kern_user.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = kern_user.hpp; path = Lilu.kext/Contents/Resources/Headers/kern_user.hpp; sourceTree = "<group>"; };
+		FB67AB312CBC633E007CA6A9 /* kern_policy.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = kern_policy.hpp; path = Lilu.kext/Contents/Resources/Headers/kern_policy.hpp; sourceTree = "<group>"; };
+		FB67AB322CBC633E007CA6A9 /* kern_version.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = kern_version.hpp; path = Lilu.kext/Contents/Resources/Headers/kern_version.hpp; sourceTree = "<group>"; };
+		FB67AB332CBC633E007CA6A9 /* kern_file.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = kern_file.hpp; path = Lilu.kext/Contents/Resources/Headers/kern_file.hpp; sourceTree = "<group>"; };
+		FB898C8A2CBBE85700927629 /* VMHide.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VMHide.kext; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB898C8D2CBBE85700927629 /* kern_start.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kern_start.cpp; sourceTree = "<group>"; };
+		FB898C8F2CBBE85700927629 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FB898C992CBC628A00927629 /* libkmod.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libkmod.a; path = MacKernelSDK/Library/x86_64/libkmod.a; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FB898C872CBBE85700927629 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB67AB172CBC62A0007CA6A9 /* libkmod.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FB67AB1C2CBC631F007CA6A9 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				FB67AB192CBC6317007CA6A9 /* plugin_start.cpp */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+		FB67AB4C2CBC634E007CA6A9 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				FB67AB222CBC633D007CA6A9 /* hde32.h */,
+				FB67AB282CBC633D007CA6A9 /* hde64.h */,
+				FB67AB242CBC633D007CA6A9 /* kern_api.hpp */,
+				FB67AB232CBC633D007CA6A9 /* kern_compat.hpp */,
+				FB67AB2B2CBC633D007CA6A9 /* kern_compression.hpp */,
+				FB67AB1F2CBC633D007CA6A9 /* kern_config.hpp */,
+				FB67AB2C2CBC633D007CA6A9 /* kern_cpu.hpp */,
+				FB67AB292CBC633D007CA6A9 /* kern_crypto.hpp */,
+				FB67AB2D2CBC633D007CA6A9 /* kern_devinfo.hpp */,
+				FB67AB1D2CBC633D007CA6A9 /* kern_disasm.hpp */,
+				FB67AB1E2CBC633D007CA6A9 /* kern_efi.hpp */,
+				FB67AB332CBC633E007CA6A9 /* kern_file.hpp */,
+				FB67AB2E2CBC633D007CA6A9 /* kern_iokit.hpp */,
+				FB67AB2A2CBC633D007CA6A9 /* kern_mach.hpp */,
+				FB67AB202CBC633D007CA6A9 /* kern_nvram.hpp */,
+				FB67AB252CBC633D007CA6A9 /* kern_patcher.hpp */,
+				FB67AB312CBC633E007CA6A9 /* kern_policy.hpp */,
+				FB67AB2F2CBC633E007CA6A9 /* kern_rtc.hpp */,
+				FB67AB262CBC633D007CA6A9 /* kern_time.hpp */,
+				FB67AB302CBC633E007CA6A9 /* kern_user.hpp */,
+				FB67AB272CBC633D007CA6A9 /* kern_util.hpp */,
+				FB67AB322CBC633E007CA6A9 /* kern_version.hpp */,
+				FB67AB212CBC633D007CA6A9 /* plugin_start.hpp */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		FB898C802CBBE85700927629 = {
+			isa = PBXGroup;
+			children = (
+				FB67AB1C2CBC631F007CA6A9 /* Library */,
+				FB67AB4C2CBC634E007CA6A9 /* Headers */,
+				FB898C8C2CBBE85700927629 /* VMHide */,
+				FB898C8B2CBBE85700927629 /* Products */,
+				FB898C982CBC628A00927629 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		FB898C8B2CBBE85700927629 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FB898C8A2CBBE85700927629 /* VMHide.kext */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FB898C8C2CBBE85700927629 /* VMHide */ = {
+			isa = PBXGroup;
+			children = (
+				FB898C8D2CBBE85700927629 /* kern_start.cpp */,
+				FB4A5A702CBF19B100D5B696 /* kern_start.hpp */,
+				FB898C8F2CBBE85700927629 /* Info.plist */,
+			);
+			path = VMHide;
+			sourceTree = "<group>";
+		};
+		FB898C982CBC628A00927629 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FB898C992CBC628A00927629 /* libkmod.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		FB898C852CBBE85700927629 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB67AB342CBC633E007CA6A9 /* kern_disasm.hpp in Headers */,
+				FB67AB352CBC633E007CA6A9 /* kern_efi.hpp in Headers */,
+				FB67AB362CBC633E007CA6A9 /* kern_config.hpp in Headers */,
+				FB67AB372CBC633E007CA6A9 /* kern_nvram.hpp in Headers */,
+				FB67AB382CBC633E007CA6A9 /* plugin_start.hpp in Headers */,
+				FB67AB392CBC633E007CA6A9 /* hde32.h in Headers */,
+				FB67AB3A2CBC633E007CA6A9 /* kern_compat.hpp in Headers */,
+				FB67AB3B2CBC633E007CA6A9 /* kern_api.hpp in Headers */,
+				FB67AB3C2CBC633E007CA6A9 /* kern_patcher.hpp in Headers */,
+				FB67AB3D2CBC633E007CA6A9 /* kern_time.hpp in Headers */,
+				FB67AB3E2CBC633E007CA6A9 /* kern_util.hpp in Headers */,
+				FB67AB3F2CBC633E007CA6A9 /* hde64.h in Headers */,
+				FB67AB402CBC633E007CA6A9 /* kern_crypto.hpp in Headers */,
+				FB67AB412CBC633E007CA6A9 /* kern_mach.hpp in Headers */,
+				FB67AB422CBC633E007CA6A9 /* kern_compression.hpp in Headers */,
+				FB67AB432CBC633E007CA6A9 /* kern_cpu.hpp in Headers */,
+				FB67AB442CBC633E007CA6A9 /* kern_devinfo.hpp in Headers */,
+				FB4A5A712CBF19B100D5B696 /* kern_start.hpp in Headers */,
+				FB67AB452CBC633E007CA6A9 /* kern_iokit.hpp in Headers */,
+				FB67AB462CBC633E007CA6A9 /* kern_rtc.hpp in Headers */,
+				FB67AB472CBC633E007CA6A9 /* kern_user.hpp in Headers */,
+				FB67AB482CBC633E007CA6A9 /* kern_policy.hpp in Headers */,
+				FB67AB492CBC633E007CA6A9 /* kern_version.hpp in Headers */,
+				FB67AB4A2CBC633E007CA6A9 /* kern_file.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		FB898C892CBBE85700927629 /* VMHide */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FB898C922CBBE85700927629 /* Build configuration list for PBXNativeTarget "VMHide" */;
+			buildPhases = (
+				FB898C852CBBE85700927629 /* Headers */,
+				FB898C862CBBE85700927629 /* Sources */,
+				FB898C872CBBE85700927629 /* Frameworks */,
+				FB898C882CBBE85700927629 /* Resources */,
+				FB67AB522CBC66B3007CA6A9 /* Archive */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VMHide;
+			productName = VMHide;
+			productReference = FB898C8A2CBBE85700927629 /* VMHide.kext */;
+			productType = "com.apple.product-type.kernel-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FB898C812CBBE85700927629 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					FB898C892CBBE85700927629 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = FB898C842CBBE85700927629 /* Build configuration list for PBXProject "VMHide" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FB898C802CBBE85700927629;
+			productRefGroup = FB898C8B2CBBE85700927629 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FB898C892CBBE85700927629 /* VMHide */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FB898C882CBBE85700927629 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FB67AB522CBC66B3007CA6A9 /* Archive */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Archive;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"${TARGET_BUILD_DIR}\"\n\ndist=(\"$FULL_PRODUCT_NAME\")\nif [ -d \"$DWARF_DSYM_FILE_NAME\" ]; then dist+=(\"$DWARF_DSYM_FILE_NAME\"); fi\n\narchive=\"${PRODUCT_NAME}-${MODULE_VERSION}-$(echo $CONFIGURATION | tr /a-z/ /A-Z/).zip\"\nrm -rf *.zip\nif [ \"$CONFIGURATION\" == \"Release\" ]; then\n  strip -x -T \"${EXECUTABLE_PATH}\" &>/dev/null || strip -x \"${EXECUTABLE_PATH}\"\nfi\nzip -qry -FS \"${archive}\" \"${dist[@]}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FB898C862CBBE85700927629 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB898C8E2CBBE85700927629 /* kern_start.cpp in Sources */,
+				FB67AB502CBC6403007CA6A9 /* plugin_start.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		FB898C902CBBE85700927629 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = x86_64;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"PRODUCT_NAME=$(PRODUCT_NAME)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Lilu.kext/Contents/Resources";
+				KERNEL_EXTENSION_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
+				KERNEL_FRAMEWORK_HEADERS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/MacKernelSDK/Library/x86_64";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		FB898C912CBBE85700927629 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = x86_64;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "PRODUCT_NAME=$(PRODUCT_NAME)";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Lilu.kext/Contents/Resources";
+				KERNEL_EXTENSION_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
+				KERNEL_FRAMEWORK_HEADERS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/MacKernelSDK/Library/x86_64";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		FB898C932CBBE85700927629 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.0;
+				INFOPLIST_FILE = VMHide/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MODULE_NAME = org.Carnations.VMHide;
+				MODULE_START = VMHide_kern_start;
+				MODULE_STOP = VMHide_kern_stop;
+				MODULE_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.Carnations.VMHide;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				WRAPPER_EXTENSION = kext;
+			};
+			name = Debug;
+		};
+		FB898C942CBBE85700927629 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.0;
+				INFOPLIST_FILE = VMHide/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MODULE_NAME = org.Carnations.VMHide;
+				MODULE_START = VMHide_kern_start;
+				MODULE_STOP = VMHide_kern_stop;
+				MODULE_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.Carnations.VMHide;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				WRAPPER_EXTENSION = kext;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FB898C842CBBE85700927629 /* Build configuration list for PBXProject "VMHide" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB898C902CBBE85700927629 /* Debug */,
+				FB898C912CBBE85700927629 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FB898C922CBBE85700927629 /* Build configuration list for PBXNativeTarget "VMHide" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB898C932CBBE85700927629 /* Debug */,
+				FB898C942CBBE85700927629 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FB898C812CBBE85700927629 /* Project object */;
+}
