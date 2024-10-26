@@ -27,22 +27,10 @@
 
 #define SYSCTL_OUT(r, p, l) (r->oldfunc)(r, p, l)
 
-// Enum to represent VMHide states
-enum VmhState {
-    VMH_DISABLED,
-    VMH_ENABLED,
-    VMH_PASSTHROUGH
-};
-
-// Global variables
-extern char vmhState[64];
-extern VmhState vmhStateEnum;
-
 // Function prototypes
 void vmhInit();
 mach_vm_address_t parseSysctlChildren();
 bool reRouteHvVmm(mach_vm_address_t sysctlChildrenAddress);
-extern sysctl_handler_t originalHvVmmHandler;
 int vmh_sysctl_vmm_present(struct sysctl_oid *oidp, void *arg1, int arg2, struct sysctl_req *req);
 
 #endif /* kern_start_h */

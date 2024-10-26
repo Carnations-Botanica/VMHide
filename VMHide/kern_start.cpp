@@ -7,15 +7,18 @@
 
 #include "kern_start.hpp"
 
-// defs for global variables
-char vmhState[64] = {0};
-VmhState vmhStateEnum = VMH_ENABLED;  // default to VMH_ENABLED
+// enum to represent VMHide states
+enum VmhState {
+    VMH_DISABLED,
+    VMH_ENABLED,
+    VMH_PASSTHROUGH
+};
 
-// global variable to store the original handler
-sysctl_handler_t originalHvVmmHandler = nullptr;
+// static variable to store the original handler
+static sysctl_handler_t originalHvVmmHandler = nullptr;
 
-// self explainatory
-KernelPatcher patcher;
+// static KernelPatcher instance
+static KernelPatcher patcher;
 
 // function to parse the sysctl__children memory address
 mach_vm_address_t parseSysctlChildren() {
@@ -168,6 +171,11 @@ int vmh_sysctl_vmm_present(struct sysctl_oid *oidp, void *arg1, int arg2, struct
 
 // main or something
 void vmhInit() {
+    
+    // init vmhState as a local variable
+    char vmhState[64] = {0};
+    VmhState vmhStateEnum = VMH_ENABLED; // Default to VMH_ENABLED
+    
     // init patcher and say hello
     patcher.init();
     DBGLOG("VMHide", "Hello World from VMHide!");
