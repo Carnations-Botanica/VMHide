@@ -14,6 +14,12 @@ enum VmhState {
     VMH_PASSTHROUGH
 };
 
+// define a struct to hold both process name and optional PID
+struct FilteredProcess {
+    const char *name;
+    pid_t pid;
+};
+
 // static variable to store the original handler
 static sysctl_handler_t originalHvVmmHandler = nullptr;
 
@@ -102,7 +108,7 @@ bool reRouteHvVmm(mach_vm_address_t sysctlChildrenAddress) {
     return true;
 }
 
-// VMHide's custom sysctl VMM present function
+// VMHide's custom sysctl VMM present function (with PID support)
 int vmh_sysctl_vmm_present(struct sysctl_oid *oidp, void *arg1, int arg2, struct sysctl_req *req) {
     // retrieve the current process information
     proc_t currentProcess = current_proc();
@@ -114,39 +120,42 @@ int vmh_sysctl_vmm_present(struct sysctl_oid *oidp, void *arg1, int arg2, struct
 
     // log the process name and PID for debugging, and discovering new processes to filter
     DBGLOG("VMHide", "vmh_sysctl_vmm_present called by process: %s (PID: %d)", procName, procPid);
-    
-    // list of specific process names to filter and hide VM status from
-    const char* filteredProcs[] = {
-        "SoftwareUpdateNo",
-        "networkservicepr",
-        "identityservices",
-        "localspeechrecog",
-        "softwareupdated",
-        "AppleIDSettings",
-        "mediaanalysisd",
-        "transparencyd",
-        "ControlCenter",
-        "com.apple.sbd",
-        "translationd",
-        "itunescloudd",
-        "amsaccountsd",
-        "duetexpertd",
-        "groupkitd",
-        "accountsd",
-        "Terminal",
-        "ndoagent",
-        "remindd",
-        "triald",
-        "sysctl",
-        "apsd",
-        "cdpd",
-        "akd",
+
+    // array of processes to filter by name or PID
+    const FilteredProcess filteredProcs[] = {
+        {"SoftwareUpdateNo", -1}, // -1 indicates no specific PID
+        {"fairplaydeviceid", -1},
+        {"networkservicepr", -1},
+        {"identityservices", -1},
+        {"localspeechrecog", -1},
+        {"softwareupdated", -1},
+        {"AppleIDSettings", -1},
+        {"mediaanalysisd", -1},
+        {"transparencyd", -1},
+        {"ControlCenter", -1},
+        {"com.apple.sbd", -1},
+        {"translationd", -1},
+        {"itunescloudd", -1},
+        {"amsaccountsd", -1},
+        {"duetexpertd", -1},
+        {"groupkitd", -1},
+        {"accountsd", -1},
+        {"Terminal", -1},
+        {"ndoagent", -1},
+        {"remindd", -1},
+        {"triald", -1},
+        {"sysctl", -1},
+        {"apsd", -1},
+        {"cdpd", -1},
+        {"akd", -1},
+        {" ", 0}  // PID 0, or basically, the Kernel Task itself
     };
 
-    // check if the procName matches any of the specific names
+    // check if the current process matches any of the filtered names or PIDs
     bool isFiltered = false;
-    for (const char* filteredProc : filteredProcs) {
-        if (strcmp(procName, filteredProc) == 0) {
+    for (const auto &filteredProc : filteredProcs) {
+        if ((filteredProc.pid == -1 && strcmp(procName, filteredProc.name) == 0) ||
+            (filteredProc.pid != -1 && procPid == filteredProc.pid)) {
             isFiltered = true;
             break;
         }
@@ -154,8 +163,8 @@ int vmh_sysctl_vmm_present(struct sysctl_oid *oidp, void *arg1, int arg2, struct
 
     if (isFiltered) {
         // if process is in the filtered list, hide the VMM status
-        DBGLOG("VMHide", "Process '%s' matched filter. Hiding VMM present.", procName);
-
+        DBGLOG("VMHide", "Process '%s' (PID: %d) matched filter. Hiding VMM present.", procName, procPid);
+        
         int hv_vmm_present_off = 0;
         return SYSCTL_OUT(req, &hv_vmm_present_off, sizeof(hv_vmm_present_off));
     } else if (originalHvVmmHandler) {
@@ -205,7 +214,7 @@ void vmhInit() {
 
     // only proceed if the state is VMH_ENABLED
     if (vmhStateEnum != VMH_ENABLED) {
-        DBGLOG("VMHide", "Will not continue due to the current VMHide state. Failed VMH Check [1/4]");
+        DBGLOG("VMHide", "Will not continue due to the current VMHide state. Failed VMH Check [1/5]");
         return;
     }
 
@@ -229,7 +238,7 @@ void vmhInit() {
     
     // only proceed if the state is VMH_ENABLED
     if (vmhStateEnum != VMH_ENABLED) {
-        DBGLOG("VMHide", "Will not continue due to the current VMHide state. Failed VMH Check [2/4]");
+        DBGLOG("VMHide", "Will not continue due to the current VMHide state. Failed VMH Check [2/5]");
         return;
     }
 
@@ -244,7 +253,7 @@ void vmhInit() {
     
     // only proceed if the state is VMH_ENABLED
     if (vmhStateEnum != VMH_ENABLED) {
-        DBGLOG("VMHide", "Will not continue due to the current VMHide state. Failed VMH Check [3/4]");
+        DBGLOG("VMHide", "Will not continue due to the current VMHide state. Failed VMH Check [3/5]");
         return;
     }
     
@@ -258,7 +267,30 @@ void vmhInit() {
     
     // only proceed if the state is VMH_ENABLED
     if (vmhStateEnum != VMH_ENABLED) {
-        DBGLOG("VMHide", "Will not continue due to the current VMHide state. Failed VMH Check [4/4]");
+        DBGLOG("VMHide", "Will not continue due to the current VMHide state. Failed VMH Check [4/5]");
+        return;
+    }
+    
+    // verify hvVmmPresent after rerouting; expected result is 0
+    hvVmmPresent = 0; // reset int for the check
+    DBGLOG("VMHide", "Will now test if VMM Status is being spoofed...");
+    if (sysctlbyname("kern.hv_vmm_present", &hvVmmPresent, &size, nullptr, 0) == 0) {
+        DBGLOG("VMHide", "Post-reroute VMM presence status (kern.hv_vmm_present): %d", hvVmmPresent);
+        if (hvVmmPresent != 0) {
+            DBGLOG("VMHide", "VMH check failed after reroute; hvVmmPresent value is higher than 0.");
+            vmhStateEnum = VMH_DISABLED;
+            return;
+        }
+        DBGLOG("VMHide", "Success! You are now appearing as baremetal.");
+        DBGLOG("VMHide", "Thanks for using VMHide!");
+    } else {
+        SYSLOG("VMHide", "Failed to read kern.hv_vmm_present for post-reroute verification.");
+        vmhStateEnum = VMH_DISABLED;
+    }
+    
+    // only proceed if the state is VMH_ENABLED
+    if (vmhStateEnum != VMH_ENABLED) {
+        DBGLOG("VMHide", "Will not continue due to the current VMHide state. Failed VMH Check [5/5]");
         return;
     }
 
@@ -288,7 +320,7 @@ PluginConfiguration ADDPR(config) {
     arrsize(bootargDebug),
     bootargBeta,
     arrsize(bootargBeta),
-    KernelVersion::Catalina,
+    KernelVersion::Ventura,
     KernelVersion::Sequoia,
     []() {
         vmhInit();
