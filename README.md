@@ -9,7 +9,7 @@ A [Lilu](https://github.com/acidanthera/Lilu) plug-in modeled after [ECEnabler](
 <h1 align="center">Purpose</h1>
 </br>
 
-This kernel extension was developed specifically for macOS 15 Sequoia but works from ``Catalina`` (10.15.X) -> ``Sequoia`` (15.X.X) with the intention of fixing a side effect of [the following new implementation for Xcode/Hypervisor.framework macOS guests on M-Series hardware supporting limited iCloud support](https://support.apple.com/en-us/120468), which can be seen in [Apple's Developer Documentation](https://developer.apple.com/documentation/virtualization/using_icloud_with_macos_virtual_machines#4412628) as well.
+This kernel extension was developed specifically for macOS 15 Sequoia but has been tested from ``Sonoma`` (14.X.X) -> ``Sequoia`` (15.X.X) with the intention of fixing a side effect of [the following new implementation for Xcode/Hypervisor.framework macOS guests on M-Series hardware supporting limited iCloud support](https://support.apple.com/en-us/120468), which can be seen in [Apple's Developer Documentation](https://developer.apple.com/documentation/virtualization/using_icloud_with_macos_virtual_machines#4412628) as well.
 
 - Hides VMM presence for various Apple ID related processes
 
@@ -30,10 +30,10 @@ VMHide has a few set of possible states it can be set to. To set the state you c
 - ``passthrough`` -> Placeholder option for forcing/spoofing VMM status, does nothing.
 
 </br>
-<b>Example Usage:</b>
+<b>Example Usage boot-args:</b>
 
 ```bash
--v vmhState=enabled
+vmhState=enabled
 ```
 
 </br>

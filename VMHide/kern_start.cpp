@@ -320,7 +320,7 @@ PluginConfiguration ADDPR(config) {
     arrsize(bootargDebug),
     bootargBeta,
     arrsize(bootargBeta),
-    KernelVersion::Ventura,
+    KernelVersion::Sonoma,
     KernelVersion::Sequoia,
     []() {
         vmhInit();

@@ -5,8 +5,8 @@
 //  Created by RoyalGraphX on 10/15/24.
 //
 
-#ifndef kern_start_h
-#define kern_start_h
+#ifndef kern_start_hpp
+#define kern_start_hpp
 
 #include <Headers/plugin_start.hpp>
 #include <Headers/kern_patcher.hpp>
@@ -33,4 +33,4 @@ mach_vm_address_t parseSysctlChildren();
 bool reRouteHvVmm(mach_vm_address_t sysctlChildrenAddress);
 int vmh_sysctl_vmm_present(struct sysctl_oid *oidp, void *arg1, int arg2, struct sysctl_req *req);
 
-#endif /* kern_start_h */
+#endif /* kern_start_hpp */
