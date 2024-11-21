@@ -5,8 +5,8 @@
 //  Created by RoyalGraphX on 10/15/24.
 //
 
-#ifndef kern_start_hpp
-#define kern_start_hpp
+#ifndef kern_start_h
+#define kern_start_h
 
 #include <Headers/plugin_start.hpp>
 #include <Headers/kern_patcher.hpp>
