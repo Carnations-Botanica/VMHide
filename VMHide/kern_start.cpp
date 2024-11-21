@@ -276,13 +276,14 @@ void vmhInit() {
     DBGLOG("VMHide", "Will now test if VMM Status is being spoofed...");
     if (sysctlbyname("kern.hv_vmm_present", &hvVmmPresent, &size, nullptr, 0) == 0) {
         DBGLOG("VMHide", "Post-reroute VMM presence status (kern.hv_vmm_present): %d", hvVmmPresent);
+        
         if (hvVmmPresent != 0) {
             DBGLOG("VMHide", "VMH check failed after reroute; hvVmmPresent value is higher than 0.");
-            vmhStateEnum = VMH_DISABLED;
             return;
+        } else {
+            DBGLOG("VMHide", "Success! You are now appearing as baremetal.");
+            DBGLOG("VMHide", "Thanks for using VMHide!");
         }
-        DBGLOG("VMHide", "Success! You are now appearing as baremetal.");
-        DBGLOG("VMHide", "Thanks for using VMHide!");
     } else {
         SYSLOG("VMHide", "Failed to read kern.hv_vmm_present for post-reroute verification.");
         vmhStateEnum = VMH_DISABLED;
