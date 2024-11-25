@@ -6,7 +6,7 @@
 //
 
 #include "kern_start.hpp"
-#include "log2disk.hpp"
+// #include "log2disk.hpp"
 
 // define a struct to hold both process name and optional PID
 struct FilteredProcess {
