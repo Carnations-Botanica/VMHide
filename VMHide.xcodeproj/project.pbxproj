@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB1613992CEEDE1500225283 /* log2disk.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB1613982CEEDE0E00225283 /* log2disk.hpp */; };
 		FB4A5A712CBF19B100D5B696 /* kern_start.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB4A5A702CBF19B100D5B696 /* kern_start.hpp */; };
 		FB67AB172CBC62A0007CA6A9 /* libkmod.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB898C992CBC628A00927629 /* libkmod.a */; };
 		FB67AB342CBC633E007CA6A9 /* kern_disasm.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB67AB1D2CBC633D007CA6A9 /* kern_disasm.hpp */; };
@@ -37,6 +38,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FB1613982CEEDE0E00225283 /* log2disk.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = log2disk.hpp; sourceTree = "<group>"; };
+		FB16139A2CEEDE2A00225283 /* log2disk.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = log2disk.cpp; sourceTree = "<group>"; };
 		FB4A5A702CBF19B100D5B696 /* kern_start.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_start.hpp; sourceTree = "<group>"; };
 		FB67AB192CBC6317007CA6A9 /* plugin_start.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = plugin_start.cpp; path = Lilu.kext/Contents/Resources/Library/plugin_start.cpp; sourceTree = "<group>"; };
 		FB67AB1D2CBC633D007CA6A9 /* kern_disasm.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = kern_disasm.hpp; path = Lilu.kext/Contents/Resources/Headers/kern_disasm.hpp; sourceTree = "<group>"; };
@@ -140,6 +143,8 @@
 		FB898C8C2CBBE85700927629 /* VMHide */ = {
 			isa = PBXGroup;
 			children = (
+				FB16139A2CEEDE2A00225283 /* log2disk.cpp */,
+				FB1613982CEEDE0E00225283 /* log2disk.hpp */,
 				FB898C8D2CBBE85700927629 /* kern_start.cpp */,
 				FB4A5A702CBF19B100D5B696 /* kern_start.hpp */,
 				FB898C8F2CBBE85700927629 /* Info.plist */,
@@ -173,6 +178,7 @@
 				FB67AB3C2CBC633E007CA6A9 /* kern_patcher.hpp in Headers */,
 				FB67AB3D2CBC633E007CA6A9 /* kern_time.hpp in Headers */,
 				FB67AB3E2CBC633E007CA6A9 /* kern_util.hpp in Headers */,
+				FB1613992CEEDE1500225283 /* log2disk.hpp in Headers */,
 				FB67AB3F2CBC633E007CA6A9 /* hde64.h in Headers */,
 				FB67AB402CBC633E007CA6A9 /* kern_crypto.hpp in Headers */,
 				FB67AB412CBC633E007CA6A9 /* kern_mach.hpp in Headers */,

@@ -6,13 +6,7 @@
 //
 
 #include "kern_start.hpp"
-
-// enum to represent VMHide states
-enum VmhState {
-    VMH_DISABLED,
-    VMH_ENABLED,
-    VMH_PASSTHROUGH
-};
+#include "log2disk.hpp"
 
 // define a struct to hold both process name and optional PID
 struct FilteredProcess {
@@ -180,6 +174,8 @@ int vmh_sysctl_vmm_present(struct sysctl_oid *oidp, void *arg1, int arg2, struct
 
 // main or something
 void vmhInit() {
+    // init Log2Disk PE
+    // Log2Disk L2D;
     
     // init vmhState as a local variable
     char vmhState[64] = {0};

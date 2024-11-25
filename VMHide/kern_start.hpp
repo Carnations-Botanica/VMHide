@@ -33,4 +33,11 @@ mach_vm_address_t parseSysctlChildren();
 bool reRouteHvVmm(mach_vm_address_t sysctlChildrenAddress);
 int vmh_sysctl_vmm_present(struct sysctl_oid *oidp, void *arg1, int arg2, struct sysctl_req *req);
 
+// Enum to represent VMHide states
+enum VmhState {
+    VMH_DISABLED,
+    VMH_ENABLED,
+    VMH_PASSTHROUGH
+};
+
 #endif /* kern_start_hpp */
