@@ -9,31 +9,55 @@ A [Lilu](https://github.com/acidanthera/Lilu) plug-in modeled after [ECEnabler](
 <h1 align="center">Purpose</h1>
 </br>
 
-This kernel extension was developed specifically for macOS 15 Sequoia but has been tested from ``Sonoma`` (14.X.X) -> ``Sequoia`` (15.X.X) with the intention of fixing a side effect of [the following new implementation for Xcode/Hypervisor.framework macOS guests on M-Series hardware supporting limited iCloud support](https://support.apple.com/en-us/120468), which can be seen in [Apple's Developer Documentation](https://developer.apple.com/documentation/virtualization/using_icloud_with_macos_virtual_machines#4412628) as well.
+This kernel extension was developed specifically for macOS 15 Sequoia but has been tested from Sonoma (although not required) to Sequoia (15.2) with the intention of fixing a side effect of [the following new implementation for Xcode/Hypervisor.framework macOS guests on M-Series hardware supporting limited iCloud support](https://support.apple.com/en-us/120468), which can be seen in [Apple's Developer Documentation](https://developer.apple.com/documentation/virtualization/using_icloud_with_macos_virtual_machines#4412628) as well.
 
-- Hides VMM presence for various Apple ID related processes
+- Hides VMM presence from various Apple ID related processes, sysctl, and the kernel.
 
-- Hides VMM presence from sysctl, and Terminal processes
+- Utilizes Carnation's first ProjectExtension [Log2Disk](https://github.com/Carnations-Botanica/ProjectExtensions) to provide easy bug reporting.
 
-- Source code contains a visible list that can easily be PR'd to add more
+- Source code contains a visible list that can easily be updated and PR'd to add more.
 
 </br>
 <h1 align="center">Usage / Features</h1>
 </br>
 
-VMHide has a few set of possible states it can be set to. To set the state you can add a boot argument with the following options:
+### Usage
+
+**To use VMHide, you must be using [the latest *DEBUG* version of Lilu](https://github.com/acidanthera/Lilu/releases/download/1.6.9/Lilu-1.6.9-DEBUG.zip) (1.6.9+ required) to properly load the plug-in. This is a currently known *bug*, and will be resolved in a timely manner when possible. As a note, requirement of DEBUG is not intentional so it's currently a bug of VMHide.**
+
+### Features
+
+VMHide has a few set of possible states it can be set to. **By default, simply dropping the Kernel Extension in your kext folder and updating config.plist with ProperTree, will automatically hide VMM status if you are on a virtual machine.** To specifically set the state for **debugging** and **contributors testing code** you can add a boot argument with the following options:
 
 ``vmhState`` - Accepts the intended state of action.
 
-- ``enabled`` -> Hides VMM Status to various process in the filter
-- ``disabled`` -> Does not hide VMM Status at all
-- ``passthrough`` -> Placeholder option for forcing/spoofing VMM status, does nothing.
+- ``enabled`` -> Force hiding VMM Status. Bypasses actual VM requirement during initial boot.
+- ``disabled`` -> Force enabling VMM Status. On non-hypervisors, force spoofing as one.
+- ``passthrough`` -> Placeholder option for forcing/spoofing VMM status, does nothing at the time of writing.
 
 </br>
-<b>Example Usage boot-args:</b>
+
+### Debugging, Bug Reporting, Contributing to Filter.
+
+If you find that you're running into issues that must be reported, or wish to contribute to the list of processes that should not be VM-aware, you can use Log2Disk's support to write a local log file with information from VMHide written to easily read within macOS and for sharing the log. 
+
+Please note that at the time of writing this information, the inclusion of L2D has not been made public, and the following boot arguments will not do anything. This information exists for future usage and as a placeholder.
+
+``l2dEnable`` - One way switch, having this argument enables Log2Disk. 
+
+</br>
+
+``l2dLogLevel`` - Set the Log2Disk verbosity level.
+
+- ``error`` -> Only log ERROR messages to disk.
+- ``warning`` -> Only log WARNING messages to disk.
+- ``all`` -> Log all messages, even simple ones.
+
+</br>
+<b>Example boot-args for Developers/Contributors (This is not required to use VMHide)</b>
 
 ```bash
-vmhState=enabled
+-l2dEnable vmhState=enabled l2dLogLevel=all
 ```
 
 </br>
@@ -50,9 +74,14 @@ vmhState=enabled
     - ``git clone https://github.com/Carnations-Botanica/VMHide.git``
     - ``cd VMHide``
     - ``git clone https://github.com/acidanthera/MacKernelSDK``
-    - Get the latest ``DEBUG`` Lilu.kext from [Releases](https://github.com/acidanthera/Lilu/releases) and place in the root of the repo.
+    - Get the latest ``DEBUG`` Lilu.kext from [Releases](https://github.com/acidanthera/Lilu/releases) and place in the root of the repo. Example required placement is below.
+        - VMHide/VMHide.xcodeproj <- Xcode Project file.
+        - VMHide/VMHide/ <- Project Contents.
+        - VMHide/MacKernelSDK <- ``git`` cloned from a Terminal.
+        - VMHide/Lilu.kext <- Actual .kext file here.
+        - VMHide/README.md <- How you can tell you're in the root.
 
-3. Launch ``.xcodeproj`` to begin!
+3. Launch ``.xcodeproj`` with Xcode to begin!
     - ``kern_start.cpp`` - Contains functions such as ``vmh_sysctl_vmm_present``.
     - ``kern_start.hpp`` - Header for Main, sets up various macros and globals.
 
