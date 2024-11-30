@@ -182,7 +182,7 @@ void vmhInit() {
     VmhState vmhStateEnum = VMH_ENABLED; // Default to VMH_ENABLED
     
     // init patcher and say hello
-    patcher.init();
+    // patcher.init();
     DBGLOG("VMHide", "Hello World from VMHide!");
     
     // let's make sure we parse a boot arg if one is present
