@@ -12,6 +12,7 @@
 #include <Headers/kern_patcher.hpp>
 #include <Headers/kern_api.hpp>
 #include <Headers/kern_util.hpp>
+#include <Headers/kern_mach.hpp>
 #include <mach/i386/vm_types.h>
 #include <libkern/libkern.h>
 #include <sys/sysctl.h>

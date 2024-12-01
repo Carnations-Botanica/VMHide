@@ -146,8 +146,12 @@ bool reRouteHvVmm(mach_vm_address_t sysCtlChildrenAddress) {
     originalHvVmmHandler = vmmNode->oid_handler;
     DBGLOG(MODULE_RRHV, "Successfully saved original 'hv_vmm_present' sysctl handler.");
     
+    // ensure kernel r/w access
+    // PANIC_COND(MachInfo::setKernelWriting(true, patcher.kernelWriteLock) != KERN_SUCCESS, MODULE_SHORT, "Failed to enable God mode. (Kernel R/W)");
+    
     // reroute the handler to our custom function
     vmmNode->oid_handler = vmh_sysctl_vmm_present;
+    // MachInfo::setKernelWriting(false, patcher.kernelWriteLock);
     DBGLOG(MODULE_RRHV, "Successfully rerouted 'hv_vmm_present' sysctl handler.");
     return true;
     
