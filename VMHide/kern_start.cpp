@@ -7,9 +7,14 @@
 
 #include "kern_start.hpp"
 
+static VMH vmhInstance;
+
+VMH *VMH::callbackVMH;
+
 // Main VMH Routine function
 void VMH::init() {
     
+    callbackVMH = this;
     DBGLOG(MODULE_INIT, "Hello World from VMHide!");
     
 }
@@ -52,7 +57,7 @@ PluginConfiguration ADDPR(config) {
     []() {
         
         // Start the main VMH routine
-        VMH::init();
+        vmhInstance.init();
         
     }
 };
