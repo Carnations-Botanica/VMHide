@@ -32,30 +32,23 @@
 
 // Logging Defs
 #define MODULE_SYSCTL "SYSC"
+#define MODULE_RRHV "RRHV"
+#define MODULE_CSYS "CSYS"
+#define MODULE_INIT "MAIN"
 #define MODULE_SHORT "VMH"
 #define MODULE_ERROR "ERR"
-#define MODULE_INIT "INIT"
 #define MODULE_L2D "L2D"
 
-// Reworked VMH Class from the earlier prototypes
+// VMH Class
 class VMH {
 public:
+    
     /**
      * Standard Init and deInit functions
      */
     void init();
     void deinit();
-    
-    /**
-     *  Function to reroute kern hv vmm present function to our own custom one in VMH
-     */
-    bool reRouteHvVmm(mach_vm_address_t sysctlChildrenAddress);
-    
-    /**
-     *  VMHide's custom sysctl VMM present function (with PID support)
-     */
-    int vmh_sysctl_vmm_present(struct sysctl_oid *oidp, void *arg1, int arg2, struct sysctl_req *req);
-    
+
     /**
      * Enum to represent VMHide states
      */
@@ -66,23 +59,12 @@ public:
     };
     
 private:
+    
     /**
      *  Private self instance for callbacks
      */
     static VMH *callbackVMH;
     
-    /**
-     *  Static variable to store the original kern hv vmm present handler
-     */
-    static sysctl_handler_t originalHvVmmHandler;
-    
-    /**
-     *  Struct to hold both process name and potential PID
-     */
-    struct FilteredProcess {
-        const char *name;
-        pid_t pid;
-    };
 };
 
 #endif /* kern_start_hpp */
