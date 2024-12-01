@@ -5,7 +5,15 @@ permissions:
 
 on:
   push:
+    paths:
+      - VMHide/VMHide/**
+      - kern_start.cpp
+      - kern_start.hpp
   pull_request:
+    paths:
+      - VMHide/VMHide/**
+      - kern_start.cpp
+      - kern_start.hpp
   workflow_dispatch:
   release:
     types: [published]
