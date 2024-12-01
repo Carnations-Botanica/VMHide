@@ -72,13 +72,6 @@ private:
     static VMH *callbackVMH;
     
     /**
-     *  Enable KernelPatcher for resolving symbols
-     *
-     *  @param patcher KernelPatcher instance
-     */
-    void processKernel(KernelPatcher &patcher);
-    
-    /**
      *  Static variable to store the original kern hv vmm present handler
      */
     static sysctl_handler_t originalHvVmmHandler;
