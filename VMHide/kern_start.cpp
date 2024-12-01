@@ -100,7 +100,7 @@ int vmh_sysctl_vmm_present(struct sysctl_oid *oidp, void *arg1, int arg2, struct
 }
 
 // function to reroute kern.hv_vmm_present function to our own custom one
-bool reRouteHvVmm(KernelPatcher &patcher, mach_vm_address_t sysctlChildrenAddress) {
+bool reRouteHvVmm(KernelPatcher &patcher, mach_vm_address_t sysCtlChildrenAddress) {
     
     // ensure that sysctlChildrenAddress exists before continuing
     if (!sysCtlChildrenAddress) {
