@@ -14,14 +14,14 @@ struct FilteredProcess {
     pid_t pid;
 };
 
+static int hvVmmPresent = 0;
+static enum VmhState vmhStateEnum = VmhState::VMH_ENABLED;
+
 // static variable to store the original handler
 static sysctl_handler_t originalHvVmmHandler = nullptr;
 
-// static KernelPatcher instance
-static KernelPatcher patcher;
-
 // function to parse the sysctl__children memory address
-mach_vm_address_t parseSysctlChildren() {
+mach_vm_address_t parseSysctlChildren(KernelPatcher &patcher) {
     // resolve the _sysctl__children symbol
     mach_vm_address_t sysctlChildrenAddress = patcher.solveSymbol(KernelPatcher::KernelID, "_sysctl__children");
 
@@ -44,7 +44,9 @@ mach_vm_address_t parseSysctlChildren() {
 
         return sysctlChildrenAddress;
     } else {
-        SYSLOG("VMHide", "Failed to resolve _sysctl__children.");
+        KernelPatcher::Error err = patcher.getError();
+        SYSLOG("VMHide", "Failed to resolve _sysctl__children. (Lilu gave back %d)", err);
+        patcher.clearError();
         return 0;
     }
 }
@@ -172,6 +174,59 @@ int vmh_sysctl_vmm_present(struct sysctl_oid *oidp, void *arg1, int arg2, struct
     }
 }
 
+/* ZORMEISTER: Unused void pointer is to meet what Lilu requires - a function with a signature of (void *, KernelPatcher &) */
+static void OnPatcherLoad(void *user __unused, KernelPatcher &Patcher) {
+    
+    // only proceed if the state is VMH_ENABLED
+    if (vmhStateEnum != VMH_ENABLED) {
+        DBGLOG("VMHide", "Will not continue due to the current VMHide state. Failed VMH Check [3/5]");
+        return;
+    }
+    
+    mach_vm_address_t addr = parseSysctlChildren(Patcher);
+    
+    /* Do 'Stage 2' of prerequesite checking. */
+    
+    // Call reRouteHvVmm with the parsed sysctlAddress
+    if (!reRouteHvVmm(addr)) {
+        SYSLOG("VMHide", "Failed to reroute hv_vmm_present.");
+        vmhStateEnum = VMH_DISABLED;
+    } else {
+        DBGLOG("VMHide", "VMH is now active and filtering processes.");
+    }
+    
+    // only proceed if the state is VMH_ENABLED
+    if (vmhStateEnum != VMH_ENABLED) {
+        DBGLOG("VMHide", "Will not continue due to the current VMHide state. Failed VMH Check [4/5]");
+        return;
+    }
+    
+    // verify hvVmmPresent after rerouting; expected result is 0
+    DBGLOG("VMHide", "Will now test if VMM Status is being spoofed...");
+    size_t size = sizeof(hvVmmPresent);
+    hvVmmPresent = 0; /* reset the integer here */
+    if (sysctlbyname("kern.hv_vmm_present", &hvVmmPresent, &size, nullptr, 0) == 0) {
+        DBGLOG("VMHide", "Post-reroute VMM presence status (kern.hv_vmm_present): %d", hvVmmPresent);
+        
+        if (hvVmmPresent != 0) {
+            DBGLOG("VMHide", "VMH check failed after reroute; hvVmmPresent value is higher than 0.");
+            return;
+        } else {
+            DBGLOG("VMHide", "Success! You are now appearing as baremetal.");
+            DBGLOG("VMHide", "Thanks for using VMHide!");
+        }
+    } else {
+        SYSLOG("VMHide", "Failed to read kern.hv_vmm_present for post-reroute verification.");
+        vmhStateEnum = VMH_DISABLED;
+    }
+    
+    // only proceed if the state is VMH_ENABLED
+    if (vmhStateEnum != VMH_ENABLED) {
+        DBGLOG("VMHide", "Will not continue due to the current VMHide state. Failed VMH Check [5/5]");
+        return;
+    }
+}
+
 // main or something
 void vmhInit() {
     // init Log2Disk PE
@@ -179,7 +234,6 @@ void vmhInit() {
     
     // init vmhState as a local variable
     char vmhState[64] = {0};
-    VmhState vmhStateEnum = VMH_ENABLED; // Default to VMH_ENABLED
     
     // init patcher and say hello
     // patcher.init();
@@ -215,7 +269,6 @@ void vmhInit() {
     }
 
     // check current status of kern.hv_vmm_present
-    int hvVmmPresent = 0; // int to track the state for kern.hv_vmm_present
     size_t size = sizeof(hvVmmPresent);
     if (sysctlbyname("kern.hv_vmm_present", &hvVmmPresent, &size, nullptr, 0) == 0) {
         DBGLOG("VMHide", "VMM presence status (kern.hv_vmm_present): %d", hvVmmPresent);
@@ -238,59 +291,7 @@ void vmhInit() {
         return;
     }
 
-    // Call parseSysctlChildren
-    mach_vm_address_t sysctlAddress = parseSysctlChildren();
-    if (sysctlAddress == 0) {
-        vmhStateEnum = VMH_DISABLED; // something went wrong, ggwp.
-        DBGLOG("VMHide", "sysctlAddress is null, disabling VMHide.");
-    } else {
-        DBGLOG("VMHide", "Successfully parsed sysctl children.");
-    }
-    
-    // only proceed if the state is VMH_ENABLED
-    if (vmhStateEnum != VMH_ENABLED) {
-        DBGLOG("VMHide", "Will not continue due to the current VMHide state. Failed VMH Check [3/5]");
-        return;
-    }
-    
-    // Call reRouteHvVmm with the parsed sysctlAddress
-    if (!reRouteHvVmm(sysctlAddress)) {
-        SYSLOG("VMHide", "Failed to reroute hv_vmm_present.");
-        vmhStateEnum = VMH_DISABLED;
-    } else {
-        DBGLOG("VMHide", "VMH is now active and filtering processes.");
-    }
-    
-    // only proceed if the state is VMH_ENABLED
-    if (vmhStateEnum != VMH_ENABLED) {
-        DBGLOG("VMHide", "Will not continue due to the current VMHide state. Failed VMH Check [4/5]");
-        return;
-    }
-    
-    // verify hvVmmPresent after rerouting; expected result is 0
-    hvVmmPresent = 0; // reset int for the check
-    DBGLOG("VMHide", "Will now test if VMM Status is being spoofed...");
-    if (sysctlbyname("kern.hv_vmm_present", &hvVmmPresent, &size, nullptr, 0) == 0) {
-        DBGLOG("VMHide", "Post-reroute VMM presence status (kern.hv_vmm_present): %d", hvVmmPresent);
-        
-        if (hvVmmPresent != 0) {
-            DBGLOG("VMHide", "VMH check failed after reroute; hvVmmPresent value is higher than 0.");
-            return;
-        } else {
-            DBGLOG("VMHide", "Success! You are now appearing as baremetal.");
-            DBGLOG("VMHide", "Thanks for using VMHide!");
-        }
-    } else {
-        SYSLOG("VMHide", "Failed to read kern.hv_vmm_present for post-reroute verification.");
-        vmhStateEnum = VMH_DISABLED;
-    }
-    
-    // only proceed if the state is VMH_ENABLED
-    if (vmhStateEnum != VMH_ENABLED) {
-        DBGLOG("VMHide", "Will not continue due to the current VMHide state. Failed VMH Check [5/5]");
-        return;
-    }
-
+    lilu.onPatcherLoad(&OnPatcherLoad);
 }
 
 const char *bootargOff[] {
