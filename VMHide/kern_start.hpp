@@ -36,8 +36,11 @@
 #define MODULE_CSYS "CSYS"
 #define MODULE_INIT "MAIN"
 #define MODULE_SHORT "VMH"
-#define MODULE_ERROR "ERR"
+#define MODULE_CUTE "<3"
 #define MODULE_L2D "L2D"
+#define MODULE_ERROR "ERR"
+#define MODULE_WARN "WARN"
+#define MODULE_INFO "INFO"
 
 // VMH Class
 class VMH {
@@ -53,10 +56,22 @@ public:
      * Enum to represent VMHide states
      */
     enum VmhState {
+        VMH_UNDERCOVER,
+        VMH_INTERNAL,
         VMH_DISABLED,
         VMH_ENABLED,
-        VMH_PASSTHROUGH
+        VMH_STRICT,
     };
+    
+    /**
+     * Static integer for VMM Presence
+    */
+    static int hvVmmPresent;
+    
+    /**
+     * Declare size type before using it
+    */
+    size_t size = sizeof(hvVmmPresent);
     
 private:
     
