@@ -67,7 +67,8 @@ void VMH::init() {
     
     // Register the root function to solve _sysctl__children on patcher load
     DBGLOG(MODULE_INIT, "Attempting to onPatcherLoadForce...");
-    lilu.onPatcherLoadForce(solveSysCtlChildrenAddr);
+    lilu.onPatcherLoadForce(&solveSysCtlChildrenAddr);
+    DBGLOG(MODULE_INIT, "onPatcherLoadForce completed successfully.");
     
 }
 

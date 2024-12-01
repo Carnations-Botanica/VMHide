@@ -47,11 +47,6 @@ public:
     void deinit();
     
     /**
-     *  Function to parse the sysctl children memory address
-     */
-    static void solveSysCtlChildrenAddr(void *user __unused, KernelPatcher &Patcher);
-    
-    /**
      *  Returns address for the sysctl children symbol
      */
     mach_vm_address_t sysctlChildrenAddr(KernelPatcher &patcher);
