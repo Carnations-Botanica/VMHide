@@ -234,7 +234,7 @@ void VMH::init() {
     char vmhState[64] = {0};
     DBGLOG(MODULE_INIT, "Hello World from VMHide!");
     
-    // CHECK 1/X
+    // CHECK 1/2
     // let's make sure we parse a boot arg if one is present
     if (PE_parse_boot_argn("vmhState", vmhState, sizeof(vmhState))) {
         DBGLOG("VMHide", "vmhState argument found with value: %s", vmhState);
@@ -260,11 +260,11 @@ void VMH::init() {
 
     // Init vmhState check
     if (vmhStateEnum != VMH::VMH_ENABLED) {
-        DBGLOG(MODULE_ERROR, "Issue with Unknown boot-arg state. Failed Init Check [1/X]");
+        DBGLOG(MODULE_ERROR, "Cannot continue. Failed Init Check [1/2]");
         return;
     }
     
-    // CHECK 2/X
+    // CHECK 2/2
     // check current status of kern.hv_vmm_present to ensure usage on a hypervisor and not baremetal
     if (sysctlbyname("kern.hv_vmm_present", &hvVmmPresent, &size, nullptr, 0) == 0) {
         DBGLOG(MODULE_INFO, "Current VMM presence status (kern.hv_vmm_present): %d", hvVmmPresent);
@@ -283,7 +283,7 @@ void VMH::init() {
     
     // Init vmhState check
     if (vmhStateEnum != VMH::VMH_ENABLED) {
-        DBGLOG(MODULE_ERROR, "Cannot continue. Failed Init Check [2/X]");
+        DBGLOG(MODULE_ERROR, "Cannot continue. Failed Init Check [2/2]");
         return;
     }
     
