@@ -26,10 +26,10 @@ Temporary Items
 .apdisk
 
 # Kext Development related files
-MacKernelSDK
 DerivedData
 Lilu.kext
 xcuserdata
+build
 
 # Project Extensions (PEs)
 

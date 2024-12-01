@@ -32,27 +32,27 @@
 
 // Reworked VMH Class from the earlier prototypes
 class VMH {
-public:
+
+    public:
     /**
      * Standard Init and deInit functions
      */
     void init();
-    void deinit();
     
     /**
      *  Function to parse the sysctl children memory address
      */
-    mach_vm_address_t parseSysctlChildren();
+    mach_vm_address_t parseSysctlChildren(KernelPatcher &patcher);
     
     /**
      *  Function to reroute kern hv vmm present function to our own custom one in VMH
      */
-    bool reRouteHvVmm(mach_vm_address_t sysctlChildrenAddress);
+    bool reRouteHvVmm(KernelPatcher &patcher, mach_vm_address_t sysctlChildrenAddress);
     
     /**
      *  VMHide's custom sysctl VMM present function (with PID support)
      */
-    int vmh_sysctl_vmm_present(struct sysctl_oid *oidp, void *arg1, int arg2, struct sysctl_req *req);
+    static int vmh_sysctl_vmm_present(struct sysctl_oid *oidp, void *arg1, int arg2, struct sysctl_req *req);
 
     /**
      * Enum to represent VMHide states
@@ -63,18 +63,18 @@ public:
         VMH_PASSTHROUGH
     };
 
-private:
+    private:
     /**
      *  Private self instance for callbacks
      */
     static VMH *callbackVMH;
     
     /**
-     *  Enable KernelPatcher for resolving symbols
+     *  Utilise KernelPatcher for resolving symbols
      *
      *  @param patcher KernelPatcher instance
      */
-    void processKernel(KernelPatcher &patcher);
+    void onPatcherLoad(KernelPatcher &patcher);
     
     /**
      *  Static variable to store the original kern hv vmm present handler
