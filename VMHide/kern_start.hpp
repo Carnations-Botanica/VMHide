@@ -47,11 +47,6 @@ public:
     void deinit();
     
     /**
-     *  Returns address for the sysctl children symbol
-     */
-    mach_vm_address_t sysctlChildrenAddr(KernelPatcher &patcher);
-    
-    /**
      *  Function to reroute kern hv vmm present function to our own custom one in VMH
      */
     bool reRouteHvVmm(mach_vm_address_t sysctlChildrenAddress);
