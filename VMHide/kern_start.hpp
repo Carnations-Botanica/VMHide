@@ -12,11 +12,15 @@
 #include <Headers/kern_patcher.hpp>
 #include <Headers/kern_api.hpp>
 #include <Headers/kern_util.hpp>
+#include <Headers/kern_mach.hpp>
 #include <mach/i386/vm_types.h>
 #include <libkern/libkern.h>
 #include <sys/sysctl.h>
 
-// Macros for sysctl types
+/**
+* Macros for sysctl types, taken from RestrictEvents
+* https://github.com/acidanthera/RestrictEvents/blob/master/RestrictEvents/SoftwareUpdate.hpp
+*/
 #define CTLTYPE             0xf     // Mask for the type
 #define CTLTYPE_NODE        1       // name is a node
 #define CTLTYPE_INT         2       // name describes an integer
@@ -27,17 +31,46 @@
 
 #define SYSCTL_OUT(r, p, l) (r->oldfunc)(r, p, l)
 
-// Function prototypes
-void vmhInit();
-mach_vm_address_t parseSysctlChildren();
-bool reRouteHvVmm(mach_vm_address_t sysctlChildrenAddress);
-int vmh_sysctl_vmm_present(struct sysctl_oid *oidp, void *arg1, int arg2, struct sysctl_req *req);
+// Logging Defs
+#define MODULE_SYSCTL "SYSC"
+#define MODULE_RRHV "RRHV"
+#define MODULE_CSYS "CSYS"
+#define MODULE_INIT "MAIN"
+#define MODULE_SHORT "VMH"
+#define MODULE_CUTE "\u2665"
+#define MODULE_L2D "L2D"
+#define MODULE_ERROR "ERR"
+#define MODULE_WARN "WARN"
+#define MODULE_INFO "INFO"
 
-// Enum to represent VMHide states
-enum VmhState {
-    VMH_DISABLED,
-    VMH_ENABLED,
-    VMH_PASSTHROUGH
+// VMH Class
+class VMH {
+public:
+    
+    /**
+     * Standard Init and deInit functions
+     */
+    void init();
+    void deinit();
+
+    /**
+     * Enum to represent VMHide states
+     */
+    enum VmhState {
+        VMH_UNDERCOVER,
+        VMH_INTERNAL,
+        VMH_DISABLED,
+        VMH_ENABLED,
+        VMH_STRICT,
+    };
+    
+private:
+    
+    /**
+     *  Private self instance for callbacks
+     */
+    static VMH *callbackVMH;
+    
 };
 
 #endif /* kern_start_hpp */

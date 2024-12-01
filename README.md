@@ -1,9 +1,9 @@
 <h1 align="center">VMHide</h1>
 
-<h5 align="center">Grants the ability to control Darwin's knowledge of VMM Presence.</h5>
+<h5 align="center">Grants the ability to control Darwin's knowledge of a VMM's Presence.</h5>
 </br>
 
-A [Lilu](https://github.com/acidanthera/Lilu) plug-in modeled after [ECEnabler]() and [RestrictEvents](https://github.com/1revenger1/ECEnabler) which resolves ``_sysctl__children`` to get the ``sysctl_oid_list`` for ``hv_vmm_present`` in the ``kern`` node, allowing VMHide to reroute it to a custom function: ``vmh_sysctl_vmm_present`` which selectively returns VMM Presence depending on a filtered list of known processes to hide from.
+A [Lilu](https://github.com/acidanthera/Lilu) plug-in modeled after [ECEnabler](https://github.com/1Revenger1/ECEnabler) and [RestrictEvents](https://github.com/acidanthera/RestrictEvents/) which resolves ``_sysctl__children`` to get the ``sysctl_oid_list`` for ``hv_vmm_present`` in the ``kern`` node, allowing VMHide to reroute it to a custom function: ``vmh_sysctl_vmm_present`` which selectively returns VMM presence value depending on a filtered list of known processes to hide from, including but not limited to sysctl and the Kernel itself.
 
 </br>
 <h1 align="center">Purpose</h1>
@@ -23,7 +23,7 @@ This kernel extension was developed specifically for macOS 15 Sequoia but has be
 
 ### Usage
 
-**To use VMHide, you must be using [the latest *DEBUG* version of Lilu](https://github.com/acidanthera/Lilu/releases/download/1.6.9/Lilu-1.6.9-DEBUG.zip) (1.6.9+ required) to properly load the plug-in. This is a currently known *bug*, and will be resolved in a timely manner when possible. As a note, requirement of DEBUG is not intentional so it's currently a bug of VMHide.**
+**To use VMHide, you must be using [the latest version of Lilu](https://github.com/acidanthera/Lilu/releases) (atleast 1.6.9+ required) to properly load the plug-in.**
 
 ### Features
 
@@ -33,7 +33,7 @@ VMHide has a few set of possible states it can be set to. **By default, simply d
 
 - ``enabled`` -> Force hiding VMM Status. Bypasses actual VM requirement during initial boot.
 - ``disabled`` -> Force enabling VMM Status. On non-hypervisors, force spoofing as one.
-- ``passthrough`` -> Placeholder option for forcing/spoofing VMM status, does nothing at the time of writing.
+- ``strict`` ->  Force VMM status 0 on all processes, regardless of Filter.
 
 </br>
 
@@ -51,6 +51,7 @@ Please note that at the time of writing this information, the inclusion of L2D h
 
 - ``error`` -> Only log ERROR messages to disk.
 - ``warning`` -> Only log WARNING messages to disk.
+- ``info`` -> Only log INFO messages to disk.
 - ``all`` -> Log all messages, even simple ones.
 
 </br>
@@ -83,16 +84,22 @@ Please note that at the time of writing this information, the inclusion of L2D h
 
 3. Launch ``.xcodeproj`` with Xcode to begin!
     - ``kern_start.cpp`` - Contains functions such as ``vmh_sysctl_vmm_present``.
-    - ``kern_start.hpp`` - Header for Main, sets up various macros and globals.
+    - ``kern_start.hpp`` - Header for Main, sets up various macros and globals and the VMH class.
 
 <br>
 <h1 align="center">Special Thanks!</h1>
 <br>
 
-[<b>1Revenger1</b>](https://github.com/1revenger1) - Took the time to explain how to develop kernel extensions from scratch, continues to provide ways to improve the source code of VMHide! They have been credited as a contributor with the ``Initial Commit``.
+[<b>1Revenger1</b>](https://github.com/1revenger1) - Took the time to explain how to develop kernel extensions from scratch, continues to provide ways to improve the source code of VMHide including the upgrade to using onPatcherLoadForce! They have been credited as a contributor with the ``Initial Commit``.
 
-[<b>ECEnabler</b>](https://github.com/1Revenger1/ECEnabler) - Served as the basis for the very first attempts building for macOS 15 and testing ideas in removed commits.
+[<b>Zormeister</b>](https://github.com/Zormeister) - Example code for onPatcherLoadForce, as well as introducing a new check for ensuring Kernel is R/W at the time of redirection of the original handler for VMM.
 
-[<b>RestrictEvents</b>](https://github.com/acidanthera/RestrictEvents/) - SoftwareUpdate Header file was used to learn and understand how to interact with ``_sysctl__children``. There may be snippets of code taken directly from RestrictEvents, such as Macros for the mapping of the oid list. If so, all appropriate credit is intended to be given to whoever worked on that!
+[<b>Lilu</b>](https://github.com/acidanthera/Lilu) - The patching engine that makes this kernel extension possible.
+
+[<b>MacKernelSDK</b>](https://github.com/acidanthera/MacKernelSDK) - An amazing SDK used to standardize the usage of various kernel APIs across multiple versions of OS X / macOS. Makes this kernel extension possible.
+
+[<b>ECEnabler</b>](https://github.com/1Revenger1/ECEnabler) - Served as the basis for the very first attempts building for macOS 15 and testing ideas in removed test CI commits.
+
+[<b>RestrictEvents</b>](https://github.com/acidanthera/RestrictEvents/) - SoftwareUpdate Header file was used to learn and understand how to interact with ``_sysctl__children``. There is header code taken directly from RestrictEvents, such as Macros for the mapping of the oid list. All appropriate credit is intended to be given to whoever worked on that!
 
 <h6 align="center">A big thanks to all contributors and future contributors! ꩓</h6>
