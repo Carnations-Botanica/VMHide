@@ -7,6 +7,22 @@
 
 #include "kern_start.hpp"
 
+// Main VMH Routine function
+void VMH::init() {
+    
+    DBGLOG(MODULE_INIT, "Hello World from VMHide!");
+    
+}
+
+// We use vmhState to determine VMH behaviour
+void VMH::deinit() {
+    
+    DBGLOG(MODULE_ERROR, "This kernel extension cannot be disabled this way!");
+    SYSLOG(MODULE_ERROR, "This kernel extension cannot be disabled this way!");
+    
+}
+
+
 const char *bootargOff[] {
     "-vmhoff"
 };
@@ -35,7 +51,8 @@ PluginConfiguration ADDPR(config) {
     KernelVersion::Sequoia,
     []() {
         
-        // erm,
+        // Start the main VMH routine
+        VMH::init();
         
     }
 };

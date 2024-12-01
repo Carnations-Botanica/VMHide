@@ -30,6 +30,12 @@
 
 #define SYSCTL_OUT(r, p, l) (r->oldfunc)(r, p, l)
 
+// Logging Defs
+#define MODULE_SHORT "VMH"
+#define MODULE_ERROR "ERR"
+#define MODULE_INIT "INIT"
+#define MODULE_L2D "L2D"
+
 // Reworked VMH Class from the earlier prototypes
 class VMH {
 public:
@@ -53,7 +59,7 @@ public:
      *  VMHide's custom sysctl VMM present function (with PID support)
      */
     int vmh_sysctl_vmm_present(struct sysctl_oid *oidp, void *arg1, int arg2, struct sysctl_req *req);
-
+    
     /**
      * Enum to represent VMHide states
      */
@@ -62,7 +68,7 @@ public:
         VMH_ENABLED,
         VMH_PASSTHROUGH
     };
-
+    
 private:
     /**
      *  Private self instance for callbacks
@@ -79,7 +85,7 @@ private:
     /**
      *  Static variable to store the original kern hv vmm present handler
      */
-    static sysctl_handler_t originalHvVmmHandler = nullptr;
+    static sysctl_handler_t originalHvVmmHandler;
     
     /**
      *  Struct to hold both process name and potential PID
@@ -88,5 +94,6 @@ private:
         const char *name;
         pid_t pid;
     };
+};
 
 #endif /* kern_start_hpp */
