@@ -3,7 +3,7 @@
 <h5 align="center">Grants the ability to control Darwin's knowledge of a VMM's Presence.</h5>
 </br>
 
-A [Lilu](https://github.com/acidanthera/Lilu) plug-in modeled after [ECEnabler](https://github.com/1Revenger1/ECEnabler) and [RestrictEvents](https://github.com/1revenger1/ECEnabler) which resolves ``_sysctl__children`` to get the ``sysctl_oid_list`` for ``hv_vmm_present`` in the ``kern`` node, allowing VMHide to reroute it to a custom function: ``vmh_sysctl_vmm_present`` which selectively returns VMM presence value depending on a filtered list of known processes to hide from, including but not limited to sysctl and the Kernel itself.
+A [Lilu](https://github.com/acidanthera/Lilu) plug-in modeled after [ECEnabler](https://github.com/1Revenger1/ECEnabler) and [RestrictEvents](https://github.com/acidanthera/RestrictEvents/) which resolves ``_sysctl__children`` to get the ``sysctl_oid_list`` for ``hv_vmm_present`` in the ``kern`` node, allowing VMHide to reroute it to a custom function: ``vmh_sysctl_vmm_present`` which selectively returns VMM presence value depending on a filtered list of known processes to hide from, including but not limited to sysctl and the Kernel itself.
 
 </br>
 <h1 align="center">Purpose</h1>
