@@ -31,6 +31,7 @@
 #define SYSCTL_OUT(r, p, l) (r->oldfunc)(r, p, l)
 
 // Logging Defs
+#define MODULE_SYSCTL "SYSC"
 #define MODULE_SHORT "VMH"
 #define MODULE_ERROR "ERR"
 #define MODULE_INIT "INIT"
@@ -48,7 +49,7 @@ public:
     /**
      *  Function to parse the sysctl children memory address
      */
-    mach_vm_address_t parseSysctlChildren();
+    static void solveSysCtlChildrenAddr(void *user __unused, KernelPatcher &Patcher);
     
     /**
      *  Function to reroute kern hv vmm present function to our own custom one in VMH
