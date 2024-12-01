@@ -100,7 +100,7 @@ int vmh_sysctl_vmm_present(struct sysctl_oid *oidp, void *arg1, int arg2, struct
 }
 
 // function to reroute kern.hv_vmm_present function to our own custom one
-bool reRouteHvVmm(mach_vm_address_t sysCtlChildrenAddress) {
+bool reRouteHvVmm(KernelPatcher &patcher, mach_vm_address_t sysctlChildrenAddress) {
     
     // ensure that sysctlChildrenAddress exists before continuing
     if (!sysCtlChildrenAddress) {
@@ -147,11 +147,11 @@ bool reRouteHvVmm(mach_vm_address_t sysCtlChildrenAddress) {
     DBGLOG(MODULE_RRHV, "Successfully saved original 'hv_vmm_present' sysctl handler.");
     
     // ensure kernel r/w access
-    // PANIC_COND(MachInfo::setKernelWriting(true, patcher.kernelWriteLock) != KERN_SUCCESS, MODULE_SHORT, "Failed to enable God mode. (Kernel R/W)");
+    PANIC_COND(MachInfo::setKernelWriting(true, patcher.kernelWriteLock) != KERN_SUCCESS, MODULE_SHORT, "Failed to enable God mode. (Kernel R/W)");
     
     // reroute the handler to our custom function
     vmmNode->oid_handler = vmh_sysctl_vmm_present;
-    // MachInfo::setKernelWriting(false, patcher.kernelWriteLock);
+    MachInfo::setKernelWriting(false, patcher.kernelWriteLock);
     DBGLOG(MODULE_RRHV, "Successfully rerouted 'hv_vmm_present' sysctl handler.");
     return true;
     
@@ -199,15 +199,15 @@ static void solveSysCtlChildrenAddr(void *user __unused, KernelPatcher &Patcher)
     // Get the address of _sysctl__children here
     mach_vm_address_t sysCtlChildrenAddress = sysctlChildrenAddr(Patcher);
     
-    // Chain into reRouteHvVmm with the address
-    if (!reRouteHvVmm(sysCtlChildrenAddress)) {
+    // Chain into reRouteHvVmm with the address, and the Patcher instance
+    if (!reRouteHvVmm(Patcher, sysCtlChildrenAddress)) {
         SYSLOG(MODULE_SYSCTL, "Failed to reroute hv_vmm_present.");
     } else {
         DBGLOG(MODULE_SYSCTL, "VMH is now active and filtering processes.");
     }
     
     // verify hvVmmPresent after rerouting; expected result is 0
-    hvVmmPresent = 0; // reset int for the check
+    static int hvVmmPresent = 0; // reset int for the check
     DBGLOG(MODULE_SYSCTL, "Will now test if VMM Status is being spoofed to sysctl.");
     if (sysctlbyname("kern.hv_vmm_present", &hvVmmPresent, &size, nullptr, 0) == 0) {
         DBGLOG(MODULE_INFO, "Post-reroute VMM presence status (kern.hv_vmm_present): %d", hvVmmPresent);
@@ -240,16 +240,16 @@ void VMH::init() {
         DBGLOG("VMHide", "vmhState argument found with value: %s", vmhState);
         
         if (strcmp(vmhState, "disabled") == 0) {
-            vmhStateEnum = VMH_DISABLED;
+            vmhStateEnum = VMH::VMH_DISABLED;
             DBGLOG(MODULE_WARN, "vmhState is disabled. Halting futher VMHide.kext execution.");
         } else if (strcmp(vmhState, "enabled") == 0) {
-            vmhStateEnum = VMH_ENABLED;
+            vmhStateEnum = VMH::VMH_ENABLED;
             DBGLOG(MODULE_INIT, "vmhState is enabled, will reroute regardless of VMM presence.");
         } else if (strcmp(vmhState, "strict") == 0) {
-            vmhStateEnum = VMH_STRICT;
+            vmhStateEnum = VMH::VMH_STRICT;
             DBGLOG(MODULE_WARN, "vmhState is strict. Hiding VMM status from all processes.");
         } else {
-            vmhStateEnum = VMH_DISABLED;
+            vmhStateEnum = VMH::VMH_DISABLED;
             DBGLOG(MODULE_ERROR, "Unknown vmhState value found. Halting futher VMHide.kext execution.");
         }
     } else {
@@ -259,7 +259,7 @@ void VMH::init() {
     }
 
     // Init vmhState check
-    if (vmhStateEnum != VMH_ENABLED) {
+    if (vmhStateEnum != VMH::VMH_ENABLED) {
         DBGLOG(MODULE_ERROR, "Issue with Unknown boot-arg state. Failed Init Check [1/X]");
         return;
     }
@@ -270,19 +270,19 @@ void VMH::init() {
         DBGLOG(MODULE_INFO, "Current VMM presence status (kern.hv_vmm_present): %d", hvVmmPresent);
     } else {
         SYSLOG(MODULE_ERROR, "Failed to read kern.hv_vmm_present.");
-        vmhStateEnum = VMH_DISABLED;
+        vmhStateEnum = VMH::VMH_DISABLED;
     }
     
     // Continue only if hvVmmPresent is 1, ensuring a VM is in use
     if (hvVmmPresent > 0) {
         DBGLOG(MODULE_INIT, "VM or Hypervisor usage detected, proceeding to hide VM presence.");
     } else {
-        vmhStateEnum = VMH_DISABLED;
+        vmhStateEnum = VMH::VMH_DISABLED;
         DBGLOG(MODULE_WARN, "No VM or Hypervisor usage detected, nothing to hide.");
     }
     
     // Init vmhState check
-    if (vmhStateEnum != VMH_ENABLED) {
+    if (vmhStateEnum != VMH::VMH_ENABLED) {
         DBGLOG(MODULE_ERROR, "Cannot continue. Failed Init Check [2/X]");
         return;
     }

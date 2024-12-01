@@ -37,7 +37,7 @@
 #define MODULE_CSYS "CSYS"
 #define MODULE_INIT "MAIN"
 #define MODULE_SHORT "VMH"
-#define MODULE_CUTE "<3"
+#define MODULE_CUTE "\u2665"
 #define MODULE_L2D "L2D"
 #define MODULE_ERROR "ERR"
 #define MODULE_WARN "WARN"
@@ -63,16 +63,6 @@ public:
         VMH_ENABLED,
         VMH_STRICT,
     };
-    
-    /**
-     * Static integer for VMM Presence
-    */
-    static int hvVmmPresent;
-    
-    /**
-     * Declare size type before using it
-    */
-    size_t size = sizeof(hvVmmPresent);
     
 private:
     
