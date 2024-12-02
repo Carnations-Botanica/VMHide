@@ -26,12 +26,9 @@ Temporary Items
 .apdisk
 
 # Kext Development related files
-MacKernelSDK
 DerivedData
-Lilu.kext
 xcuserdata
 
-# Project Extensions (PEs)
+# Private Project Extensions (PEs)
 
-VMHide/log2disk.cpp
-VMHide/log2disk.hpp
+
