@@ -8,21 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		FB4A5A712CBF19B100D5B696 /* kern_start.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB4A5A702CBF19B100D5B696 /* kern_start.hpp */; };
+		FB58D79C2CFD5362008968A7 /* libkmod.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB58D79B2CFD5353008968A7 /* libkmod.a */; };
 		FB898C8E2CBBE85700927629 /* kern_start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB898C8D2CBBE85700927629 /* kern_start.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FB4A5A702CBF19B100D5B696 /* kern_start.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_start.hpp; sourceTree = "<group>"; };
+		FB58D79B2CFD5353008968A7 /* libkmod.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libkmod.a; path = MacKernelSDK/Library/x86_64/libkmod.a; sourceTree = "<group>"; };
 		FB898C8A2CBBE85700927629 /* VMHide.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VMHide.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB898C8D2CBBE85700927629 /* kern_start.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kern_start.cpp; sourceTree = "<group>"; };
 		FB898C8F2CBBE85700927629 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		FB58D7BF2CFD53E4008968A7 /* Headers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); name = Headers; path = Lilu/Lilu/Headers; sourceTree = "<group>"; };
+		FB58D7E72CFD53F7008968A7 /* Library */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (FB58D7ED2CFD5404008968A7 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); name = Library; path = Lilu/Lilu/Library; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		FB898C872CBBE85700927629 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB58D79C2CFD5362008968A7 /* libkmod.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -32,6 +40,8 @@
 		FB898C802CBBE85700927629 = {
 			isa = PBXGroup;
 			children = (
+				FB58D7E72CFD53F7008968A7 /* Library */,
+				FB58D7BF2CFD53E4008968A7 /* Headers */,
 				FB898C8C2CBBE85700927629 /* VMHide */,
 				FB898C8B2CBBE85700927629 /* Products */,
 				FB898C982CBC628A00927629 /* Frameworks */,
@@ -59,6 +69,7 @@
 		FB898C982CBC628A00927629 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FB58D79B2CFD5353008968A7 /* libkmod.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -90,6 +101,10 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				FB58D7BF2CFD53E4008968A7 /* Headers */,
+				FB58D7E72CFD53F7008968A7 /* Library */,
 			);
 			name = VMHide;
 			productName = VMHide;

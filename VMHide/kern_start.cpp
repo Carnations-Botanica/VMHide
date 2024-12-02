@@ -233,6 +233,7 @@ void VMH::init() {
     callbackVMH = this;
     char vmhState[64] = {0};
     DBGLOG(MODULE_INIT, "Hello World from VMHide!");
+    DBGLOG(MODULE_INFO, "This build of VMHide is for carnationsinternal usage!");
     
     // CHECK 1/2
     // let's make sure we parse a boot arg if one is present
