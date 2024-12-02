@@ -20,11 +20,6 @@
 		FB898C8F2CBBE85700927629 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		FB58D7BF2CFD53E4008968A7 /* Headers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); name = Headers; path = Lilu/Lilu/Headers; sourceTree = "<group>"; };
-		FB58D7E72CFD53F7008968A7 /* Library */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (FB58D7ED2CFD5404008968A7 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); name = Library; path = Lilu/Lilu/Library; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
 		FB898C872CBBE85700927629 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
