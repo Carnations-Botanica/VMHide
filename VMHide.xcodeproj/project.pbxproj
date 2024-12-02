@@ -9,6 +9,31 @@
 /* Begin PBXBuildFile section */
 		F0B769802CFC445C00043DD0 /* plugin_start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B7697E2CFC445200043DD0 /* plugin_start.cpp */; };
 		FB4A5A712CBF19B100D5B696 /* kern_start.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB4A5A702CBF19B100D5B696 /* kern_start.hpp */; };
+		FB5C28782CFD5D0F00A3C58E /* hde32.h in Headers */ = {isa = PBXBuildFile; fileRef = F0B769612CFC43F800043DD0 /* hde32.h */; };
+		FB5C28792CFD5D0F00A3C58E /* hde64.h in Headers */ = {isa = PBXBuildFile; fileRef = F0B769622CFC43F800043DD0 /* hde64.h */; };
+		FB5C287A2CFD5D0F00A3C58E /* kern_api.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B769632CFC43F800043DD0 /* kern_api.hpp */; };
+		FB5C287B2CFD5D0F00A3C58E /* kern_compat.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B769642CFC43F800043DD0 /* kern_compat.hpp */; };
+		FB5C287C2CFD5D0F00A3C58E /* kern_compression.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B769652CFC43F800043DD0 /* kern_compression.hpp */; };
+		FB5C287D2CFD5D0F00A3C58E /* kern_config.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B769662CFC43F800043DD0 /* kern_config.hpp */; };
+		FB5C287E2CFD5D0F00A3C58E /* kern_cpu.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B769672CFC43F800043DD0 /* kern_cpu.hpp */; };
+		FB5C287F2CFD5D0F00A3C58E /* kern_crypto.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B769682CFC43F800043DD0 /* kern_crypto.hpp */; };
+		FB5C28802CFD5D0F00A3C58E /* kern_devinfo.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B769692CFC43F800043DD0 /* kern_devinfo.hpp */; };
+		FB5C28812CFD5D0F00A3C58E /* kern_disasm.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B7696A2CFC43F800043DD0 /* kern_disasm.hpp */; };
+		FB5C28822CFD5D0F00A3C58E /* kern_efi.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B7696B2CFC43F800043DD0 /* kern_efi.hpp */; };
+		FB5C28832CFD5D0F00A3C58E /* kern_file.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B7696C2CFC43F800043DD0 /* kern_file.hpp */; };
+		FB5C28842CFD5D0F00A3C58E /* kern_iokit.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B7696D2CFC43F800043DD0 /* kern_iokit.hpp */; };
+		FB5C28852CFD5D0F00A3C58E /* kern_mach.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B7696E2CFC43F800043DD0 /* kern_mach.hpp */; };
+		FB5C28862CFD5D0F00A3C58E /* kern_nvram.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B7696F2CFC43F800043DD0 /* kern_nvram.hpp */; };
+		FB5C28872CFD5D0F00A3C58E /* kern_patcher.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B769702CFC43F800043DD0 /* kern_patcher.hpp */; };
+		FB5C28882CFD5D0F00A3C58E /* kern_policy.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B769712CFC43F800043DD0 /* kern_policy.hpp */; };
+		FB5C28892CFD5D0F00A3C58E /* kern_rtc.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B769722CFC43F800043DD0 /* kern_rtc.hpp */; };
+		FB5C288A2CFD5D0F00A3C58E /* kern_time.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B769732CFC43F800043DD0 /* kern_time.hpp */; };
+		FB5C288B2CFD5D0F00A3C58E /* kern_user.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B769742CFC43F800043DD0 /* kern_user.hpp */; };
+		FB5C288C2CFD5D0F00A3C58E /* kern_util.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B769752CFC43F800043DD0 /* kern_util.hpp */; };
+		FB5C288D2CFD5D0F00A3C58E /* kern_version.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B769762CFC43F800043DD0 /* kern_version.hpp */; };
+		FB5C288E2CFD5D0F00A3C58E /* plugin_start.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B769772CFC43F800043DD0 /* plugin_start.hpp */; };
+		FB5C289D2CFD656100A3C58E /* log2disk.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB5C289C2CFD655A00A3C58E /* log2disk.hpp */; };
+		FB5C289F2CFD656800A3C58E /* log2disk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB5C289E2CFD656500A3C58E /* log2disk.cpp */; };
 		FB67AB172CBC62A0007CA6A9 /* libkmod.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB898C992CBC628A00927629 /* libkmod.a */; };
 		FB898C8E2CBBE85700927629 /* kern_start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB898C8D2CBBE85700927629 /* kern_start.cpp */; };
 /* End PBXBuildFile section */
@@ -53,6 +78,8 @@
 		F0B7697C2CFC445200043DD0 /* wrappers.inc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.pascal; path = wrappers.inc; sourceTree = "<group>"; };
 		F0B7697E2CFC445200043DD0 /* plugin_start.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = plugin_start.cpp; sourceTree = "<group>"; };
 		FB4A5A702CBF19B100D5B696 /* kern_start.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_start.hpp; sourceTree = "<group>"; };
+		FB5C289C2CFD655A00A3C58E /* log2disk.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = log2disk.hpp; sourceTree = "<group>"; };
+		FB5C289E2CFD656500A3C58E /* log2disk.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = log2disk.cpp; sourceTree = "<group>"; };
 		FB898C8A2CBBE85700927629 /* VMHide.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VMHide.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB898C8D2CBBE85700927629 /* kern_start.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kern_start.cpp; sourceTree = "<group>"; };
 		FB898C8F2CBBE85700927629 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -163,6 +190,8 @@
 		FB898C8C2CBBE85700927629 /* VMHide */ = {
 			isa = PBXGroup;
 			children = (
+				FB5C289E2CFD656500A3C58E /* log2disk.cpp */,
+				FB5C289C2CFD655A00A3C58E /* log2disk.hpp */,
 				FB898C8D2CBBE85700927629 /* kern_start.cpp */,
 				FB4A5A702CBF19B100D5B696 /* kern_start.hpp */,
 				FB898C8F2CBBE85700927629 /* Info.plist */,
@@ -185,7 +214,31 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB5C28782CFD5D0F00A3C58E /* hde32.h in Headers */,
+				FB5C28792CFD5D0F00A3C58E /* hde64.h in Headers */,
+				FB5C287A2CFD5D0F00A3C58E /* kern_api.hpp in Headers */,
+				FB5C287B2CFD5D0F00A3C58E /* kern_compat.hpp in Headers */,
+				FB5C287C2CFD5D0F00A3C58E /* kern_compression.hpp in Headers */,
+				FB5C287D2CFD5D0F00A3C58E /* kern_config.hpp in Headers */,
+				FB5C287E2CFD5D0F00A3C58E /* kern_cpu.hpp in Headers */,
+				FB5C287F2CFD5D0F00A3C58E /* kern_crypto.hpp in Headers */,
+				FB5C28802CFD5D0F00A3C58E /* kern_devinfo.hpp in Headers */,
+				FB5C28812CFD5D0F00A3C58E /* kern_disasm.hpp in Headers */,
+				FB5C28822CFD5D0F00A3C58E /* kern_efi.hpp in Headers */,
+				FB5C28832CFD5D0F00A3C58E /* kern_file.hpp in Headers */,
+				FB5C28842CFD5D0F00A3C58E /* kern_iokit.hpp in Headers */,
+				FB5C28852CFD5D0F00A3C58E /* kern_mach.hpp in Headers */,
+				FB5C28862CFD5D0F00A3C58E /* kern_nvram.hpp in Headers */,
+				FB5C28872CFD5D0F00A3C58E /* kern_patcher.hpp in Headers */,
+				FB5C28882CFD5D0F00A3C58E /* kern_policy.hpp in Headers */,
+				FB5C28892CFD5D0F00A3C58E /* kern_rtc.hpp in Headers */,
+				FB5C288A2CFD5D0F00A3C58E /* kern_time.hpp in Headers */,
+				FB5C288B2CFD5D0F00A3C58E /* kern_user.hpp in Headers */,
+				FB5C288C2CFD5D0F00A3C58E /* kern_util.hpp in Headers */,
+				FB5C288D2CFD5D0F00A3C58E /* kern_version.hpp in Headers */,
+				FB5C288E2CFD5D0F00A3C58E /* plugin_start.hpp in Headers */,
 				FB4A5A712CBF19B100D5B696 /* kern_start.hpp in Headers */,
+				FB5C289D2CFD656100A3C58E /* log2disk.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB5C289F2CFD656800A3C58E /* log2disk.cpp in Sources */,
 				FB898C8E2CBBE85700927629 /* kern_start.cpp in Sources */,
 				F0B769802CFC445C00043DD0 /* plugin_start.cpp in Sources */,
 			);
@@ -413,10 +467,10 @@
 			buildSettings = {
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.4;
+				CURRENT_PROJECT_VERSION = 1.1.5;
 				INFOPLIST_FILE = VMHide/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				MODULE_NAME = org.Carnations.VMHide;
 				MODULE_START = VMHide_kern_start;
 				MODULE_STOP = VMHide_kern_stop;
@@ -433,11 +487,11 @@
 			buildSettings = {
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.4;
+				CURRENT_PROJECT_VERSION = 1.1.5;
 				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Lilu/Lilu";
 				INFOPLIST_FILE = VMHide/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				MODULE_NAME = org.Carnations.VMHide;
 				MODULE_START = VMHide_kern_start;
 				MODULE_STOP = VMHide_kern_stop;
