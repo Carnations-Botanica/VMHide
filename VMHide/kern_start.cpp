@@ -58,6 +58,7 @@ int vmh_sysctl_vmm_present(struct sysctl_oid *oidp, void *arg1, int arg2, struct
         {"itunescloudd", -1},
         {"amsaccountsd", -1},
         {"duetexpertd", -1},
+        {"bluetoothd", -1},
         {"groupkitd", -1},
         {"accountsd", -1},
         {"Terminal", -1},
