@@ -25,7 +25,7 @@ This kernel extension was developed specifically for macOS 15 Sequoia but has be
 
 ### Usage
 
-**To use VMHide, you must be using [the latest version of Lilu](https://github.com/acidanthera/Lilu/releases) (atleast 1.6.9+ required) to properly load the plug-in.**
+**To use VMHide, you must be using [the latest version of Lilu](https://github.com/acidanthera/Lilu/releases) (atleast 1.7.0+ required) to properly load the plug-in.**
 
 ### Features
 
@@ -34,19 +34,23 @@ VMHide has a few set of possible states it can be set to. **By default, simply d
 ``vmhState`` - Accepts the intended state of action.
 
 - ``enabled`` -> Force hiding VMM Status. Bypasses actual VM requirement during initial boot.
-- ``disabled`` -> Force enabling VMM Status. On non-hypervisors, force spoofing as one.
-- ``strict`` ->  Force VMM status 0 on all processes, regardless of Filter.
+- ``disabled`` -> Disable VMHide from initializing. On non-hypervisors, force spoofing as a VM.
+- ``strict`` ->  Force VMM return 0 on all processes, regardless of Filter.
 
 </br>
 
 ### Debugging, Bug Reporting, Contributing to Filter.
 
-If you find that you're running into issues that must be reported, or wish to contribute to the list of processes that should not be VM-aware, you can use Log2Disk's support to write a local log file with information from VMHide written to easily read within macOS and for sharing the log. 
+If you find that you're running into issues that must be reported, or wish to contribute to the list of processes that should not be VM-aware, you can use Log2Disk's support to write a local log file with information from VMHide written to easily read within macOS and for sharing the log.
 
-Please note that at the time of writing this information, the inclusion of L2D has not been made public, and the following boot arguments will not do anything. This information exists for future usage and as a placeholder.
+</br>
+
+<img src="assets/L2DOverview.png" alt="Overview of Log2Disk in Action" style="width: 75%; height: 75%; display: block; margin: 0 auto;">
+</br>
 
 ``l2dEnable`` - One way switch, having this argument enables Log2Disk. 
 
+Please allow every two minutes for the Log Buffer to sync to the Log File automatically.
 </br>
 
 ``l2dLogLevel`` - Set the Log2Disk verbosity level.
@@ -60,7 +64,7 @@ Please note that at the time of writing this information, the inclusion of L2D h
 <b>Example boot-args for Developers/Contributors (This is not required to use VMHide)</b>
 
 ```bash
--l2dEnable vmhState=enabled l2dLogLevel=all
+debug=0x100 -liludbgall -l2dEnable vmhState=enabled l2dLogLevel=all
 ```
 
 </br>
@@ -74,19 +78,19 @@ Please note that at the time of writing this information, the inclusion of L2D h
     - Visit https://xcodereleases.com/ for your appropriate latest version.
 
 2. Prepare source code
-    - ``git clone https://github.com/Carnations-Botanica/VMHide.git``
-    - ``cd VMHide``
-    - ``git clone https://github.com/acidanthera/MacKernelSDK``
-    - Get the latest ``DEBUG`` Lilu.kext from [Releases](https://github.com/acidanthera/Lilu/releases) and place in the root of the repo. Example required placement is below.
+    - ``git clone --recursive https://github.com/Carnations-Botanica/VMHide.git``
+    - Get the latest ``DEBUG`` Lilu.kext from [Releases](https://github.com/acidanthera/Lilu/releases) and update your EFI with it. Example Repository contents below.
         - VMHide/VMHide.xcodeproj <- Xcode Project file.
         - VMHide/VMHide/ <- Project Contents.
-        - VMHide/MacKernelSDK <- ``git`` cloned from a Terminal.
-        - VMHide/Lilu.kext <- Actual .kext file here.
+        - VMHide/MacKernelSDK <- Gotten by using ``--recursive``.
+        - VMHide/Lilu <- Gotten by using ``--recursive``.
         - VMHide/README.md <- How you can tell you're in the root.
 
 3. Launch ``.xcodeproj`` with Xcode to begin!
     - ``kern_start.cpp`` - Contains functions such as ``vmh_sysctl_vmm_present``.
     - ``kern_start.hpp`` - Header for Main, sets up various macros and globals and the VMH class.
+    - ``log2disk.cpp`` - Contains the main Log2Disk file, and its functions.
+    - ``log2disk.hpp`` - Header for Log2Disk's usage within Projects such as VMHide.
 
 <br>
 <h1 align="center">Special Thanks!</h1>

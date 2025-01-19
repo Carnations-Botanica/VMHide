@@ -26,9 +26,11 @@ Temporary Items
 .apdisk
 
 # Kext Development related files
+.vscode/c_cpp_properties.json
+.vscode/launch.json
+.vscode/settings.json
 DerivedData
 xcuserdata
+build
 
 # Private Project Extensions (PEs)
-
-

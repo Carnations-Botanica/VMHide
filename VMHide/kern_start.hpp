@@ -33,19 +33,23 @@
 
 // Logging Defs
 #define MODULE_SYSCTL "SYSC"
+#define MODULE_PPU "PPU"
 #define MODULE_RRHV "RRHV"
 #define MODULE_CSYS "CSYS"
 #define MODULE_INIT "MAIN"
 #define MODULE_SHORT "VMH"
+#define MODULE_LONG "VMHide"
 #define MODULE_CUTE "\u2665"
-#define MODULE_L2D "L2D"
-#define MODULE_ERROR "ERR"
-#define MODULE_WARN "WARN"
-#define MODULE_INFO "INFO"
 
 // VMH Class
 class VMH {
 public:
+    
+    /**
+     * Maximum number of processes we can track, Maximum length of a process name
+     */
+    #define MAX_PROCESSES 256
+    #define MAX_PROC_NAME_LEN 256
     
     /**
      * Standard Init and deInit functions
@@ -57,10 +61,12 @@ public:
      * Enum to represent VMHide states
      */
     enum VmhState {
+        VMH_INVERTED,
         VMH_UNDERCOVER,
         VMH_INTERNAL,
         VMH_DISABLED,
         VMH_ENABLED,
+        VMH_DEFAULT,
         VMH_STRICT,
     };
     
@@ -74,3 +80,8 @@ private:
 };
 
 #endif /* kern_start_hpp */
+
+#ifndef VMH_VERSION /* VMH_VERSION Macro */
+#define VMH_VERSION "Unknown"
+
+#endif /* VMH_VERSION Macro */
