@@ -129,8 +129,6 @@ int vmh_sysctl_vmm_present(struct sysctl_oid *oidp, void *arg1, int arg2, struct
     // Get the process name using proc_name
     proc_name(procPid, procName, sizeof(procName));
 
-    // DBGLOG(MODULE_CSYS, "Process '%s' (PID: %d) called vmh_sysctl_vmm_present.", procName, procPid);
-
     // check if the current process matches any of the filtered names or PIDs
     bool isFiltered = false;
     for (const auto &filteredProc : filteredProcs) {
