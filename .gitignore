@@ -26,12 +26,11 @@ Temporary Items
 .apdisk
 
 # Kext Development related files
-MacKernelSDK
+.vscode/c_cpp_properties.json
+.vscode/launch.json
+.vscode/settings.json
 DerivedData
-Lilu.kext
 xcuserdata
+build
 
-# Project Extensions (PEs)
-
-VMHide/log2disk.cpp
-VMHide/log2disk.hpp
+# Private Project Extensions (PEs)
