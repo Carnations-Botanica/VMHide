@@ -7,10 +7,6 @@
 
 #include "kern_start.hpp"
 #include "kern_vmm.hpp"
-#include "kern_kextmanager.hpp"
-#include "kern_securelevel.hpp"
-#include "kern_csr.hpp"
-#include "kern_ioreg.hpp"
 
 static VMH vmhInstance;
 VMH *VMH::callbackVMH;
@@ -22,7 +18,7 @@ VMH::VmhState VMH::vmhStateEnum = VMH::VMH_DEFAULT;
 mach_vm_address_t VMH::gSysctlChildrenAddr = 0;
 
 // To only be modified by CarnationsInternal, to display various Internal logs and headers
-const bool VMH::IS_INTERNAL = true; // MUST CHANCE THIS TO FALSE BEFORE CREATING COMMITS
+const bool VMH::IS_INTERNAL = false; // MUST CHANCE THIS TO FALSE BEFORE CREATING COMMITS
 
 // Function to process a Proc's Uniqueness in terms of a seen/unseen basis
 bool VMH::processCurrentProcessUnique(const char* procName, pid_t procPid, bool isFiltered) {
@@ -227,7 +223,7 @@ PluginConfiguration ADDPR(config) {
     bootargBeta,
     arrsize(bootargBeta),
     KernelVersion::Sonoma,
-    KernelVersion::Sequoia,
+	KernelVersion::Tahoe,
     []() {
         
         // Start the main VMH routine
