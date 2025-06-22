@@ -8,6 +8,7 @@
 #ifndef kern_start_h
 #define kern_start_h
 
+// VMHide Includes
 #include <Headers/plugin_start.hpp>
 #include <Headers/kern_patcher.hpp>
 #include <Headers/kern_api.hpp>
@@ -15,42 +16,45 @@
 #include <Headers/kern_mach.hpp>
 #include <mach/i386/vm_types.h>
 #include <libkern/libkern.h>
+#include <IOKit/IOLib.h>
 #include <sys/sysctl.h>
-
-/**
-* Macros for sysctl types, taken from RestrictEvents
-* https://github.com/acidanthera/RestrictEvents/blob/master/RestrictEvents/SoftwareUpdate.hpp
-*/
-#define CTLTYPE             0xf     // Mask for the type
-#define CTLTYPE_NODE        1       // name is a node
-#define CTLTYPE_INT         2       // name describes an integer
-#define CTLTYPE_STRING      3       // name describes a string
-#define CTLTYPE_QUAD        4       // name describes a 64-bit number
-#define CTLTYPE_OPAQUE      5       // name describes a structure
-#define CTLTYPE_STRUCT      CTLTYPE_OPAQUE  // name describes a structure
-
-#define SYSCTL_OUT(r, p, l) (r->oldfunc)(r, p, l)
+#include <i386/cpuid.h>
 
 // Logging Defs
-#define MODULE_SYSCTL "SYSC"
-#define MODULE_PPU "PPU"
-#define MODULE_RRHV "RRHV"
-#define MODULE_CSYS "CSYS"
-#define MODULE_INIT "MAIN"
+#define MODULE_INIT "INIT"
 #define MODULE_SHORT "VMH"
 #define MODULE_LONG "VMHide"
+#define MODULE_ERROR "ERR"
+#define MODULE_WARN "WARN"
+#define MODULE_INFO "INFO"
 #define MODULE_CUTE "\u2665"
 
-// VMH Class
+// Function Logging Defs
+#define MODULE_PPU "PPU"
+#define MODULE_SYSCA "SYSCA"
+#define MODULE_SSYSCTL "SSYSCTL"
+
+// VMH Root/Parent Class
 class VMH {
 public:
-    
+
     /**
      * Maximum number of processes we can track, Maximum length of a process name
      */
     #define MAX_PROCESSES 256
     #define MAX_PROC_NAME_LEN 256
-    
+	
+	/**
+	 * Process Uniqueness of a proc
+	 */
+	static char uniqueProcesses[MAX_PROCESSES][MAX_PROC_NAME_LEN];
+	static int uniqueProcessCount;
+	
+	/**
+	 * Declaration of Func to proc Uniqueness
+	 */
+	static bool processCurrentProcessUnique(const char* procName, pid_t procPid, bool isFiltered);
+
     /**
      * Standard Init and deInit functions
      */
@@ -69,14 +73,54 @@ public:
         VMH_DEFAULT,
         VMH_STRICT,
     };
-    
+	
+	/**
+	* Publicly accessible state enum
+	*/
+	static VmhState vmhStateEnum;
+	
+	/**
+	* Publicly accessible internal build flag
+	*/
+	static const bool IS_INTERNAL;
+	
+	/**
+	* Struct to hold both process name and potential PID
+	*/
+	struct DetectedProcess {
+		const char *name;
+    	pid_t pid;
+	};
+	
+    /**
+     * @brief Stores the resolved address of the kernel's _sysctl__children list.
+     * Populated by VMH::solveSysCtlChildrenAddr.
+     */
+    static mach_vm_address_t gSysctlChildrenAddr;
+	
+    /**
+     * @brief Resolves the address of the kernel's _sysctl__children list.
+     * This function directly uses the KernelPatcher to find the symbol.
+     * @param patcher A reference to the KernelPatcher instance.
+     * @return The address of _sysctl__children, or 0 if not found.
+     */
+    static mach_vm_address_t sysctlChildrenAddr(KernelPatcher &patcher);
+	
+    /**
+     * @brief Callback for Lilu's onPatcherLoad. Solves for and stores _sysctl__children address.
+     * This function calls VMH::sysctlChildrenAddr and stores the result in VMH::gSysctlChildrenAddr.
+     * @param user User-defined pointer (unused).
+     * @param Patcher A reference to the KernelPatcher instance.
+     */
+    static void solveSysCtlChildrenAddr(void *user, KernelPatcher &Patcher);
+	
 private:
-    
+
     /**
      *  Private self instance for callbacks
      */
     static VMH *callbackVMH;
-    
+
 };
 
 #endif /* kern_start_hpp */

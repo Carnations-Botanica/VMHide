@@ -3,11 +3,31 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 70;
 	objects = {
+
+/* Begin PBXAggregateTarget section */
+		FB9725802DEBA6FF00DBF8D5 /* Unit Tests */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = FB9725812DEBA6FF00DBF8D5 /* Build configuration list for PBXAggregateTarget "Unit Tests" */;
+			buildPhases = (
+				FB97258D2DEBAA9100DBF8D5 /* Run Unit Tests */,
+			);
+			dependencies = (
+				FB9725862DEBA72A00DBF8D5 /* PBXTargetDependency */,
+				FB9725882DEBA72A00DBF8D5 /* PBXTargetDependency */,
+				FB97258A2DEBA72A00DBF8D5 /* PBXTargetDependency */,
+			);
+			name = "Unit Tests";
+			packageProductDependencies = (
+			);
+			productName = "Unit Tests";
+		};
+/* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
 		F0B769802CFC445C00043DD0 /* plugin_start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B7697E2CFC445200043DD0 /* plugin_start.cpp */; };
+		FB2CAE4F2DD1DCAD0046A98D /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB2CAE4D2DD1DC040046A98D /* IOKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		FB4A5A712CBF19B100D5B696 /* kern_start.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB4A5A702CBF19B100D5B696 /* kern_start.hpp */; };
 		FB5C28782CFD5D0F00A3C58E /* hde32.h in Headers */ = {isa = PBXBuildFile; fileRef = F0B769612CFC43F800043DD0 /* hde32.h */; };
 		FB5C28792CFD5D0F00A3C58E /* hde64.h in Headers */ = {isa = PBXBuildFile; fileRef = F0B769622CFC43F800043DD0 /* hde64.h */; };
@@ -32,11 +52,65 @@
 		FB5C288C2CFD5D0F00A3C58E /* kern_util.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B769752CFC43F800043DD0 /* kern_util.hpp */; };
 		FB5C288D2CFD5D0F00A3C58E /* kern_version.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B769762CFC43F800043DD0 /* kern_version.hpp */; };
 		FB5C288E2CFD5D0F00A3C58E /* plugin_start.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B769772CFC43F800043DD0 /* plugin_start.hpp */; };
-		FB5C289D2CFD656100A3C58E /* log2disk.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FB5C289C2CFD655A00A3C58E /* log2disk.hpp */; };
-		FB5C289F2CFD656800A3C58E /* log2disk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB5C289E2CFD656500A3C58E /* log2disk.cpp */; };
 		FB67AB172CBC62A0007CA6A9 /* libkmod.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB898C992CBC628A00927629 /* libkmod.a */; };
 		FB898C8E2CBBE85700927629 /* kern_start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB898C8D2CBBE85700927629 /* kern_start.cpp */; };
+		FBD598AF2DEF50DD00455A11 /* kern_vmm.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FBD598AD2DEF50DD00455A11 /* kern_vmm.hpp */; };
+		FBD598B02DEF50DD00455A11 /* kern_vmm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBD598AE2DEF50DD00455A11 /* kern_vmm.cpp */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FB9725852DEBA72A00DBF8D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FB898C812CBBE85700927629 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FB2CAE452DD1DBF10046A98D;
+			remoteInfo = "test-kextmanager";
+		};
+		FB9725872DEBA72A00DBF8D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FB898C812CBBE85700927629 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FB2CAE552DD25DA70046A98D;
+			remoteInfo = "test-sip";
+		};
+		FB9725892DEBA72A00DBF8D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FB898C812CBBE85700927629 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FBCA01C12DD1C66600A7EEB0;
+			remoteInfo = "test-vmm";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FB2CAE442DD1DBF10046A98D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		FB2CAE542DD25DA70046A98D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		FBCA01C02DD1C66600A7EEB0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		F0B769562CFC43F800043DD0 /* arm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = arm.h; sourceTree = "<group>"; };
@@ -77,21 +151,53 @@
 		F0B7697B2CFC445200043DD0 /* entry64.S */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm; path = entry64.S; sourceTree = "<group>"; };
 		F0B7697C2CFC445200043DD0 /* wrappers.inc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.pascal; path = wrappers.inc; sourceTree = "<group>"; };
 		F0B7697E2CFC445200043DD0 /* plugin_start.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = plugin_start.cpp; sourceTree = "<group>"; };
+		FB2CAE462DD1DBF10046A98D /* test-kextmanager */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "test-kextmanager"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB2CAE4D2DD1DC040046A98D /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		FB2CAE562DD25DA70046A98D /* test-sip */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "test-sip"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB4A5A702CBF19B100D5B696 /* kern_start.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_start.hpp; sourceTree = "<group>"; };
-		FB5C289C2CFD655A00A3C58E /* log2disk.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = log2disk.hpp; sourceTree = "<group>"; };
-		FB5C289E2CFD656500A3C58E /* log2disk.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = log2disk.cpp; sourceTree = "<group>"; };
 		FB898C8A2CBBE85700927629 /* VMHide.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VMHide.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB898C8D2CBBE85700927629 /* kern_start.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kern_start.cpp; sourceTree = "<group>"; };
 		FB898C8F2CBBE85700927629 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB898C992CBC628A00927629 /* libkmod.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libkmod.a; path = MacKernelSDK/Library/x86_64/libkmod.a; sourceTree = "<group>"; };
+		FBCA01C22DD1C66600A7EEB0 /* test-vmm */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "test-vmm"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBD598AD2DEF50DD00455A11 /* kern_vmm.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_vmm.hpp; sourceTree = "<group>"; };
+		FBD598AE2DEF50DD00455A11 /* kern_vmm.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kern_vmm.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		FB2CAE472DD1DBF10046A98D /* test-kextmanager */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "test-kextmanager"; sourceTree = "<group>"; };
+		FB2CAE572DD25DA70046A98D /* test-sip */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "test-sip"; sourceTree = "<group>"; };
+		FBCA01C32DD1C66600A7EEB0 /* test-vmm */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "test-vmm"; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
+		FB2CAE432DD1DBF10046A98D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB2CAE4F2DD1DCAD0046A98D /* IOKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB2CAE532DD25DA70046A98D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FB898C872CBBE85700927629 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				FB67AB172CBC62A0007CA6A9 /* libkmod.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBCA01BF2DD1C66600A7EEB0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +280,7 @@
 				F0B7697F2CFC445200043DD0 /* Library */,
 				F0B769782CFC43F800043DD0 /* Headers */,
 				FB898C8C2CBBE85700927629 /* VMHide */,
+				FBCA01BD2DD1C64900A7EEB0 /* Tools */,
 				FB898C8B2CBBE85700927629 /* Products */,
 				FB898C982CBC628A00927629 /* Frameworks */,
 			);
@@ -183,6 +290,9 @@
 			isa = PBXGroup;
 			children = (
 				FB898C8A2CBBE85700927629 /* VMHide.kext */,
+				FBCA01C22DD1C66600A7EEB0 /* test-vmm */,
+				FB2CAE462DD1DBF10046A98D /* test-kextmanager */,
+				FB2CAE562DD25DA70046A98D /* test-sip */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -190,8 +300,8 @@
 		FB898C8C2CBBE85700927629 /* VMHide */ = {
 			isa = PBXGroup;
 			children = (
-				FB5C289E2CFD656500A3C58E /* log2disk.cpp */,
-				FB5C289C2CFD655A00A3C58E /* log2disk.hpp */,
+				FBD598AE2DEF50DD00455A11 /* kern_vmm.cpp */,
+				FBD598AD2DEF50DD00455A11 /* kern_vmm.hpp */,
 				FB898C8D2CBBE85700927629 /* kern_start.cpp */,
 				FB4A5A702CBF19B100D5B696 /* kern_start.hpp */,
 				FB898C8F2CBBE85700927629 /* Info.plist */,
@@ -202,9 +312,20 @@
 		FB898C982CBC628A00927629 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FB2CAE4D2DD1DC040046A98D /* IOKit.framework */,
 				FB898C992CBC628A00927629 /* libkmod.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FBCA01BD2DD1C64900A7EEB0 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				FB2CAE572DD25DA70046A98D /* test-sip */,
+				FB2CAE472DD1DBF10046A98D /* test-kextmanager */,
+				FBCA01C32DD1C66600A7EEB0 /* test-vmm */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,7 +336,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB5C288E2CFD5D0F00A3C58E /* plugin_start.hpp in Headers */,
-				FB5C289D2CFD656100A3C58E /* log2disk.hpp in Headers */,
 				FB4A5A712CBF19B100D5B696 /* kern_start.hpp in Headers */,
 				FB5C28782CFD5D0F00A3C58E /* hde32.h in Headers */,
 				FB5C28792CFD5D0F00A3C58E /* hde64.h in Headers */,
@@ -228,6 +348,7 @@
 				FB5C28802CFD5D0F00A3C58E /* kern_devinfo.hpp in Headers */,
 				FB5C28812CFD5D0F00A3C58E /* kern_disasm.hpp in Headers */,
 				FB5C28822CFD5D0F00A3C58E /* kern_efi.hpp in Headers */,
+				FBD598AF2DEF50DD00455A11 /* kern_vmm.hpp in Headers */,
 				FB5C28832CFD5D0F00A3C58E /* kern_file.hpp in Headers */,
 				FB5C28842CFD5D0F00A3C58E /* kern_iokit.hpp in Headers */,
 				FB5C28852CFD5D0F00A3C58E /* kern_mach.hpp in Headers */,
@@ -245,6 +366,50 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		FB2CAE452DD1DBF10046A98D /* test-kextmanager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FB2CAE4C2DD1DBF10046A98D /* Build configuration list for PBXNativeTarget "test-kextmanager" */;
+			buildPhases = (
+				FB2CAE422DD1DBF10046A98D /* Sources */,
+				FB2CAE432DD1DBF10046A98D /* Frameworks */,
+				FB2CAE442DD1DBF10046A98D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				FB2CAE472DD1DBF10046A98D /* test-kextmanager */,
+			);
+			name = "test-kextmanager";
+			packageProductDependencies = (
+			);
+			productName = "test-kextmanager";
+			productReference = FB2CAE462DD1DBF10046A98D /* test-kextmanager */;
+			productType = "com.apple.product-type.tool";
+		};
+		FB2CAE552DD25DA70046A98D /* test-sip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FB2CAE5A2DD25DA70046A98D /* Build configuration list for PBXNativeTarget "test-sip" */;
+			buildPhases = (
+				FB2CAE522DD25DA70046A98D /* Sources */,
+				FB2CAE532DD25DA70046A98D /* Frameworks */,
+				FB2CAE542DD25DA70046A98D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				FB2CAE572DD25DA70046A98D /* test-sip */,
+			);
+			name = "test-sip";
+			packageProductDependencies = (
+			);
+			productName = "test-sip";
+			productReference = FB2CAE562DD25DA70046A98D /* test-sip */;
+			productType = "com.apple.product-type.tool";
+		};
 		FB898C892CBBE85700927629 /* VMHide */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FB898C922CBBE85700927629 /* Build configuration list for PBXNativeTarget "VMHide" */;
@@ -264,6 +429,28 @@
 			productReference = FB898C8A2CBBE85700927629 /* VMHide.kext */;
 			productType = "com.apple.product-type.kernel-extension";
 		};
+		FBCA01C12DD1C66600A7EEB0 /* test-vmm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBCA01C62DD1C66600A7EEB0 /* Build configuration list for PBXNativeTarget "test-vmm" */;
+			buildPhases = (
+				FBCA01BE2DD1C66600A7EEB0 /* Sources */,
+				FBCA01BF2DD1C66600A7EEB0 /* Frameworks */,
+				FBCA01C02DD1C66600A7EEB0 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				FBCA01C32DD1C66600A7EEB0 /* test-vmm */,
+			);
+			name = "test-vmm";
+			packageProductDependencies = (
+			);
+			productName = "test-vmm";
+			productReference = FBCA01C22DD1C66600A7EEB0 /* test-vmm */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -272,8 +459,20 @@
 			attributes = {
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
+					FB2CAE452DD1DBF10046A98D = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					FB2CAE552DD25DA70046A98D = {
+						CreatedOnToolsVersion = 16.0;
+					};
 					FB898C892CBBE85700927629 = {
 						CreatedOnToolsVersion = 12.4;
+					};
+					FB9725802DEBA6FF00DBF8D5 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					FBCA01C12DD1C66600A7EEB0 = {
+						CreatedOnToolsVersion = 16.0;
 					};
 				};
 			};
@@ -291,6 +490,10 @@
 			projectRoot = "";
 			targets = (
 				FB898C892CBBE85700927629 /* VMHide */,
+				FBCA01C12DD1C66600A7EEB0 /* test-vmm */,
+				FB2CAE452DD1DBF10046A98D /* test-kextmanager */,
+				FB2CAE552DD25DA70046A98D /* test-sip */,
+				FB9725802DEBA6FF00DBF8D5 /* Unit Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -324,22 +527,144 @@
 			shellPath = /bin/sh;
 			shellScript = "cd \"${TARGET_BUILD_DIR}\"\n\ndist=(\"$FULL_PRODUCT_NAME\")\nif [ -d \"$DWARF_DSYM_FILE_NAME\" ]; then dist+=(\"$DWARF_DSYM_FILE_NAME\"); fi\n\narchive=\"${PRODUCT_NAME}-${MODULE_VERSION}-$(echo $CONFIGURATION | tr /a-z/ /A-Z/).zip\"\nrm -rf *.zip\nif [ \"$CONFIGURATION\" == \"Release\" ]; then\n  strip -x -T \"${EXECUTABLE_PATH}\" &>/dev/null || strip -x \"${EXECUTABLE_PATH}\"\nfi\nzip -qry -FS \"${archive}\" \"${dist[@]}\"\n";
 		};
+		FB97258D2DEBAA9100DBF8D5 /* Run Unit Tests */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Unit Tests";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/zsh\n\n# Get the target build directory\nTARGET_DIR_PATH=\"${TARGET_BUILD_DIR}\"\nCOMMAND_SEQUENCE=\"cd \\\\\\\"${TARGET_DIR_PATH}\\\\\\\" && \\\\\n./test-kextmanager && \\\\\nprintf '\\\\n\\\\n' && \\\\\n./test-sip && \\\\\nprintf '\\\\n\\\\n' && \\\\\n./test-vmm && \\\\\nprintf '\\\\n\\\\n' && \\\\\necho \\\\\\\"Done. All tests complete. Press any key to close this terminal...\\\\\\\" && \\\\\nread -k1 && \\\\\nexit\"\n\n# Use osascript to tell Terminal.app to open a new window and run the commands\nosascript <<EOF\ntell application \"Terminal\"\n    activate\n    do script \"${COMMAND_SEQUENCE}\"\nend tell\nEOF\n\necho \"Launched a new Terminal window to run tests. Output will be in that window.\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		FB2CAE422DD1DBF10046A98D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB2CAE522DD25DA70046A98D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FB898C862CBBE85700927629 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBD598B02DEF50DD00455A11 /* kern_vmm.cpp in Sources */,
 				F0B769802CFC445C00043DD0 /* plugin_start.cpp in Sources */,
-				FB5C289F2CFD656800A3C58E /* log2disk.cpp in Sources */,
 				FB898C8E2CBBE85700927629 /* kern_start.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBCA01BE2DD1C66600A7EEB0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		FB9725862DEBA72A00DBF8D5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FB2CAE452DD1DBF10046A98D /* test-kextmanager */;
+			targetProxy = FB9725852DEBA72A00DBF8D5 /* PBXContainerItemProxy */;
+		};
+		FB9725882DEBA72A00DBF8D5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FB2CAE552DD25DA70046A98D /* test-sip */;
+			targetProxy = FB9725872DEBA72A00DBF8D5 /* PBXContainerItemProxy */;
+		};
+		FB97258A2DEBA72A00DBF8D5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FBCA01C12DD1C66600A7EEB0 /* test-vmm */;
+			targetProxy = FB9725892DEBA72A00DBF8D5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		FB2CAE4A2DD1DBF10046A98D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FB2CAE4B2DD1DBF10046A98D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		FB2CAE5B2DD25DA70046A98D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FB2CAE5C2DD25DA70046A98D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		FB898C902CBBE85700927629 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -467,7 +792,7 @@
 			buildSettings = {
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.3;
+				CURRENT_PROJECT_VERSION = 2.0.0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"L2D_VERSION=\\\"$(L2D_VERSIONING)\\\"",
 					"VMH_VERSION=\\\"$(CURRENT_PROJECT_VERSION)\\\"",
@@ -477,7 +802,7 @@
 				INFOPLIST_FILE = VMHide/Info.plist;
 				L2D_VERSIONING = 1.0.0;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 2.0.0;
 				MODULE_NAME = org.Carnations.VMHide;
 				MODULE_START = VMHide_kern_start;
 				MODULE_STOP = VMHide_kern_stop;
@@ -494,7 +819,7 @@
 			buildSettings = {
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.3;
+				CURRENT_PROJECT_VERSION = 2.0.0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"L2D_VERSION=\\\"$(L2D_VERSIONING)\\\"",
 					"VMH_VERSION=\\\"$(CURRENT_PROJECT_VERSION)\\\"",
@@ -504,7 +829,7 @@
 				INFOPLIST_FILE = VMHide/Info.plist;
 				L2D_VERSIONING = 1.0.0;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 2.0.0;
 				MODULE_NAME = org.Carnations.VMHide;
 				MODULE_START = VMHide_kern_start;
 				MODULE_STOP = VMHide_kern_stop;
@@ -516,9 +841,75 @@
 			};
 			name = Release;
 		};
+		FB9725822DEBA6FF00DBF8D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FB9725832DEBA6FF00DBF8D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		FBCA01C72DD1C66600A7EEB0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FBCA01C82DD1C66600A7EEB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		FB2CAE4C2DD1DBF10046A98D /* Build configuration list for PBXNativeTarget "test-kextmanager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB2CAE4A2DD1DBF10046A98D /* Debug */,
+				FB2CAE4B2DD1DBF10046A98D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FB2CAE5A2DD25DA70046A98D /* Build configuration list for PBXNativeTarget "test-sip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB2CAE5B2DD25DA70046A98D /* Debug */,
+				FB2CAE5C2DD25DA70046A98D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		FB898C842CBBE85700927629 /* Build configuration list for PBXProject "VMHide" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -533,6 +924,24 @@
 			buildConfigurations = (
 				FB898C932CBBE85700927629 /* Debug */,
 				FB898C942CBBE85700927629 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FB9725812DEBA6FF00DBF8D5 /* Build configuration list for PBXAggregateTarget "Unit Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB9725822DEBA6FF00DBF8D5 /* Debug */,
+				FB9725832DEBA6FF00DBF8D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FBCA01C62DD1C66600A7EEB0 /* Build configuration list for PBXNativeTarget "test-vmm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBCA01C72DD1C66600A7EEB0 /* Debug */,
+				FBCA01C82DD1C66600A7EEB0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
